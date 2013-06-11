@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import Excepsiones.LaHabitacionYaEstaReservada;
+
 
 public class Habitacion {
 	
@@ -56,9 +58,17 @@ public class Habitacion {
 		this.checkOut = checkOut;
 	}
 	
-	///////////
+	public int getNumero() {
+		return numero;
+	}
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
 	
+	
+	///////////
 	//Metodos
+	
 	public boolean cumpleCapacidad(int capacidad){
 		return this.getCapacidad()==capacidad;
 	}
@@ -71,8 +81,25 @@ public class Habitacion {
 		return this.getCheckOut().equals(checkOut);
 	}
 
-	public boolean cumpleCondiciones(int capacidad,Calendar checkIn,Calendar checkOut){
-		return this.cumpleCapacidad(capacidad) & this.cumpleCheckIn(checkIn) & this.cumpleCheckOut(checkOut);
+	//Devuelve True si los parametros dados son iguales a los de la habitacion
+	/*public boolean cumpleCondiciones(Busqueda bus,Habitacion hab){
+		return hab.cumpleCapacidad(bus.getCantHuespedes()) & hab.cumpleCheckIn(bus.getFechaIngreso()) & 
+		hab.cumpleCheckOut(bus.getFechaSalida());
+	}
+	*/
+	
+	public boolean cumpleCondiciones(Busqueda busqueda){
+		return this.getEstado().cumpleCondiciones(busqueda,this);
+	}
+
+	//Dada una habitacion me dice es la misma a esta
+	public boolean mismaHabitacion(Habitacion habitacion){
+		return habitacion.equals(this);
+	}
+	
+	//Le dice a su Estado que se reserve
+	public void reservate() throws LaHabitacionYaEstaReservada {
+		this.getEstado().reservar(this);		
 	}
 	
 }

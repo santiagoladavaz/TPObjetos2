@@ -3,6 +3,9 @@ import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
+import Excepsiones.LaHabitacionYaEstaReservada;
+
+@SuppressWarnings("unused")
 public class Pasajero {
 
 //Var. De Instancia	
@@ -39,7 +42,7 @@ public void setMail(String mail) {
 
 
 //Metodos
-public ArrayList<Reserva> reservasFuturas(){
+/*public ArrayList<Reserva> reservasFuturas(){
 	ArrayList<Reserva>res=new ArrayList<Reserva>();
     
 	Calendar fechaActual=Calendar.getInstance();
@@ -51,7 +54,7 @@ public ArrayList<Reserva> reservasFuturas(){
 	}
 	return res;
 }
-
+*/
 
 public ArrayList<Reserva> reservasDe(String unaCiudad)
 {
@@ -91,8 +94,8 @@ public void ofertar(Pasajero unPasajero,int unPrecio) throws Exception{
 }
 
 
-public void reservarHabitacion(Hotel hotel, int nroHabitacion){
-	this.getSistema().reservarHabitacion(hotel,nroHabitacion);
+public void reservarHabitacion(Hotel hotel, Habitacion habitacion,Pasajero pas) throws LaHabitacionYaEstaReservada{
+	this.getSistema().reservarHabitacion(hotel,habitacion,this);
 }
 
 

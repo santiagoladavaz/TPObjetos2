@@ -78,9 +78,9 @@ public class Hotel {
 	public ArrayList<Habitacion>cumpleTodasCondiciones(Busqueda busqueda){
 		ArrayList<Habitacion>res =new ArrayList<Habitacion>();
 		if(this.igualDestino(busqueda.getUnDestino())){
-			for(Habitacion h:this.getHabitaciones()){
-				if(h.cumpleCondiciones(busqueda.getCantHuespedes(),busqueda.getFechaIngreso(),busqueda.getFechaSalida())){
-					res.add(h);
+			for(Habitacion hab:this.getHabitaciones()){
+				if(hab.cumpleCondiciones(busqueda)){
+					res.add(hab);
 				  }
 	          }
 	      }
@@ -91,6 +91,20 @@ public class Hotel {
 		return this.cumpleTodasCondiciones(busqueda).size()>0;
 		}
 	
+	
+	
+	public boolean mismoHotel(Hotel hotel){
+		return hotel.equals(this);
+	}
+	
+	
+	public boolean mismaHabitacion(Habitacion h){
+		boolean res=false;
+	for(Habitacion hab:this.getHabitaciones())
+		if(hab.equals(h))
+			res=true;
+	return res;
+  }
 }
 
 	

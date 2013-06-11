@@ -17,8 +17,8 @@ public class Main {
 		Habitacion h=new Habitacion(1,1,null,null, null, null);
 		Calendar inicio= Calendar.getInstance();
 		Calendar fin= Calendar.getInstance();
-		inicio.set(Calendar.DAY_OF_MONTH,29);
-		inicio.set(Calendar.MONTH,5);
+		inicio.set(Calendar.DAY_OF_MONTH,10);
+		inicio.set(Calendar.MONTH,6);
 		inicio.set(Calendar.YEAR,2013);
 		fin.set(Calendar.DAY_OF_MONTH,2);
 		fin.set(Calendar.MONTH,6);

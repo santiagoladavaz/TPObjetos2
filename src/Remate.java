@@ -118,30 +118,4 @@ public class Remate {
 	
 	
 	
-	public static void main(String[] args) throws Exception {
-		Habitacion h=new Habitacion(1,1,null,null, null, null);
-		Calendar inicio= Calendar.getInstance();
-		Calendar fin= Calendar.getInstance();
-		inicio.set(Calendar.DAY_OF_MONTH,29);
-		inicio.set(Calendar.MONTH,5);
-		inicio.set(Calendar.YEAR,2013);
-		fin.set(Calendar.DAY_OF_MONTH,2);
-		fin.set(Calendar.MONTH,6);
-		fin.set(Calendar.YEAR,2013);
-		Pasajero pas1=new Pasajero();
-		Pasajero pas2=new Pasajero();
-		Pasajero pas3=new Pasajero();
-		pas3.setNombre("Santi");
-		EnCurso encurso=new EnCurso();
-		Finalizada finalizada=new Finalizada();
-		Remate rem =new Remate(h,10,inicio,fin,encurso,null);
-		rem.ofertar(pas1,15,rem);
-		rem.ofertar(pas2,11,rem);
-		rem.ofertar(pas3,21, rem);
-		rem.estado=finalizada;
-		rem.anunciarGanador(rem);
-
-		
-	}
-	
 }
