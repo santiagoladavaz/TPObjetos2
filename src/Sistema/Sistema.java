@@ -1,12 +1,15 @@
+package Sistema;
+
 import java.util.ArrayList;
 
 import Excepsiones.LaHabitacionYaEstaReservada;
+import Hotel.*;
+import Remate.Remate;
 
 
 public class Sistema{
 	ArrayList<Hotel>hoteles=new ArrayList<Hotel>();
 	ArrayList<Resultado>resultadosBusqueda=new ArrayList<Resultado>();
-	ArrayList<Reserva>reservas=new ArrayList<Reserva>();
 	Remate remate;
 
 	
@@ -40,16 +43,7 @@ public class Sistema{
 	public void setResultadosBusqueda(ArrayList<Resultado> resultadosBusqueda) {
 		this.resultadosBusqueda = resultadosBusqueda;
 	}
-	
-	public ArrayList<Reserva> getReservas() {
-		return reservas;
-	}
 
-
-	public void setReservas(ArrayList<Reserva> reservas) {
-		this.reservas = reservas;
-	}
-	
 	
 	//Metodos 
 	public void buscarHotelesPor(Busqueda busqueda){
@@ -82,9 +76,9 @@ public class Sistema{
 		  System.out.println("No hay resultados");
 		
 		for(Resultado r:this.getResultadosBusqueda()){
-			System.out.println("El hotel es" +r.getHotel().nombre);
+			System.out.println("El hotel es "+r.getHotel().getNombre());
 			for(Habitacion h:r.getHabitaciones()){
-				System.out.println("Habitacion Numero"+h.numero);
+				System.out.println("Habitacion Numero "+h.getNumero());
 			}
 		
 	}
@@ -100,8 +94,10 @@ public class Sistema{
 				if(res.getHotel().mismaHabitacion(habitacion)){
 					habitacion.reservate();
 					Reserva reserva=new Reserva(hotel, habitacion,pas,habitacion.getCheckIn(),habitacion.getCheckOut());
-					this.getReservas().add(reserva);
-					System.out.println("Se acaba de Reservar"+habitacion.getNumero()+"En el hotel"+hotel.getNombre());
+					pas.getReservas().add(reserva);
+					hotel.getReservas().add(reserva);
+					System.out.println("Se acaba de Reservar "+habitacion.getNumero()+" En el hotel "+hotel.getNombre());
+					this.concretarReserva(hotel,pas);
 				   }
 				  }
 		         }
@@ -111,7 +107,16 @@ public class Sistema{
 	
 	
 	public void enviarMailA(String email){
-		
+		System.out.println("Se envio un email a la casilla  "+email);
 		}		
+	
+	
+	public void concretarReserva(Hotel hotel,Pasajero pas){
+		this.enviarMailA(hotel.getEmail());
+		this.enviarMailA(pas.getMail());
+	}
+	
+	
+	
 		
 }

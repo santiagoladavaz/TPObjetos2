@@ -1,4 +1,9 @@
+package Sistema;
+
 import java.util.ArrayList;
+
+import Hotel.Habitacion;
+import Hotel.Hotel;
 
 public class Resultado {
 	Hotel hotel;

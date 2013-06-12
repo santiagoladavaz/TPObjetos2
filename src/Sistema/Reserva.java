@@ -1,4 +1,9 @@
+package Sistema;
+
 import java.util.Calendar;
+
+import Hotel.Habitacion;
+import Hotel.Hotel;
 
 
 public class Reserva {

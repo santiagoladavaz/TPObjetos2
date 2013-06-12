@@ -1,3 +1,5 @@
+package Test;
+
 import org.junit.Before;
 import java.util.Calendar;
 
@@ -6,6 +8,9 @@ import org.mockito.Mock;
 
 import Excepsiones.ElRemateEstaEnCurso;
 import Excepsiones.ElRemateFinalizo;
+import Remate.Finalizada;
+import Remate.Remate;
+import Sistema.Pasajero;
 
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;

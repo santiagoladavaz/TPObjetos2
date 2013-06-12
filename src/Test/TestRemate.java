@@ -1,7 +1,15 @@
+package Test;
+
 import java.util.Calendar;
 
 import org.junit.*;
 import org.mockito.Mock;
+
+import Hotel.Habitacion;
+import Remate.EnCurso;
+import Remate.Estado;
+import Remate.Remate;
+import Sistema.Pasajero;
 
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;

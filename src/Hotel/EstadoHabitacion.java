@@ -1,4 +1,6 @@
+package Hotel;
 import Excepsiones.LaHabitacionYaEstaReservada;
+import Sistema.Busqueda;
 
 
 public abstract class EstadoHabitacion {

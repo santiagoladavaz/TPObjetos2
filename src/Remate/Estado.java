@@ -1,3 +1,7 @@
+package Remate;
+
+import Sistema.Pasajero;
+
 
 public abstract class Estado {
 

@@ -1,4 +1,6 @@
+package Remate;
 import Excepsiones.ElRemateFinalizo;
+import Sistema.Pasajero;
 
 
 public class Finalizada extends Estado{

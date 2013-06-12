@@ -1,13 +1,19 @@
+package Hotel;
+
 import java.util.ArrayList;
+
+import Sistema.Busqueda;
+import Sistema.Reserva;
+
 
 
 public class Hotel {
-	ArrayList<Habitacion>habitaciones=new ArrayList<Habitacion>();
+	public ArrayList<Habitacion>habitaciones=new ArrayList<Habitacion>();
 	ArrayList<Reserva>reservas=new ArrayList<Reserva>();
 	Servicio servicios;
 	String nombre;
 	String pais;
-	String ciudad;
+	public String ciudad;
 	String direccion;
 	int telefono;
 	String email;

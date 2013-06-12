@@ -1,7 +1,10 @@
+package Hotel;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 
 import Excepsiones.LaHabitacionYaEstaReservada;
+import Sistema.Busqueda;
 
 
 public class Habitacion {

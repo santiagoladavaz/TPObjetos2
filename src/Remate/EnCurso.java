@@ -1,4 +1,6 @@
+package Remate;
 import Excepsiones.*;
+import Sistema.Pasajero;
 
 
 public class EnCurso extends Estado {

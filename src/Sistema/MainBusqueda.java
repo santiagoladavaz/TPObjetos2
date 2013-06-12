@@ -1,6 +1,14 @@
+package Sistema;
+import Hotel.EstadoHabitacion;
+import Hotel.Habitacion;
+import Hotel.Hotel;
+import Hotel.Libre;
+import Hotel.Reservada;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import Excepsiones.LaHabitacionYaEstaReservada;
+
 
 public class MainBusqueda {
 	
@@ -47,23 +55,24 @@ public class MainBusqueda {
 	Hotel hotel1=new Hotel();
 	hotel1.ciudad="Bernal";
 	hotel1.habitaciones=hab1;
-	hotel1.nombre="ELDANI";
+	hotel1.setNombre("ELDANI");
+	hotel1.setEmail("eldani@gmail.com");
 	
 	
 	Hotel hotel2=new Hotel();
 	hotel2.ciudad="Quilmes";
 	hotel2.habitaciones=hab2;
-	hotel2.nombre="PEPE";
+	hotel2.setNombre("PEPE");
 	
 	Hotel hotel3=new Hotel();
 	hotel3.ciudad="Ezeiza";
 	hotel3.habitaciones=hab3;
-	hotel3.nombre="BOSQUE";
+	hotel3.setNombre("BOSQUE");
 	
 	Hotel hotel4=new Hotel();
 	hotel4.ciudad="Bernal";
 	hotel4.habitaciones=hab4;
-	hotel4.nombre="Shell";
+	hotel4.setNombre("Shell");
 	
 	
 	ArrayList<Hotel>hoteles=new ArrayList<Hotel>();
@@ -77,6 +86,7 @@ public class MainBusqueda {
 	
 	Pasajero pas=new Pasajero();
 	pas.setSistema(sis);
+	pas.setMail("pasajero@gmail.com");
 	Pasajero pas1=new Pasajero();
 	pas.setSistema(sis);
 	Busqueda busqueda= new Busqueda("Bernal",in,out,4);
@@ -87,14 +97,14 @@ public class MainBusqueda {
 	sis.reservarHabitacion(hotel1,h1,pas);
 	//sis.reservarHabitacion(hotel1,h1,pas1);
 	
-	pas.buscarHotelesPor(busqueda);
-	sis.imprimirResultadoBusqueda();
+	//pas.buscarHotelesPor(busqueda);
+	//sis.imprimirResultadoBusqueda();
 	
-	sis.reservarHabitacion(hotel4,h4,pas);
+	//sis.reservarHabitacion(hotel4,h4,pas);
 
 	
-	pas.buscarHotelesPor(busqueda);
-	sis.imprimirResultadoBusqueda();
+	//pas.buscarHotelesPor(busqueda);
+	//sis.imprimirResultadoBusqueda();
 	
 	
 	

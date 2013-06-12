@@ -1,3 +1,7 @@
+package Hotel;
+
+import Sistema.Busqueda;
+
 
 public class Libre extends EstadoHabitacion {
 

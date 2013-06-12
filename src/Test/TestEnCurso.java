@@ -1,3 +1,5 @@
+package Test;
+
 
 
 import org.junit.Before;
@@ -7,6 +9,9 @@ import org.junit.*;
 import org.mockito.Mock;
 
 import Excepsiones.ElRemateEstaEnCurso;
+import Remate.EnCurso;
+import Remate.Remate;
+import Sistema.Pasajero;
 
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;

@@ -1,4 +1,9 @@
+package Remate;
+
 import java.util.Calendar;
+
+import Hotel.Habitacion;
+import Sistema.Pasajero;
 
 public class Remate {
 	Habitacion h;

@@ -1,9 +1,13 @@
+package Sistema;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
-
 import Excepsiones.LaHabitacionYaEstaReservada;
+import Hotel.Habitacion;
+import Hotel.Hotel;
+
 
 @SuppressWarnings("unused")
 public class Pasajero {
@@ -42,34 +46,6 @@ public void setMail(String mail) {
 
 
 //Metodos
-/*public ArrayList<Reserva> reservasFuturas(){
-	ArrayList<Reserva>res=new ArrayList<Reserva>();
-    
-	Calendar fechaActual=Calendar.getInstance();
-	
-	for(Reserva r:this.getReservas()){
-		if(r.getFechaReserva().after(fechaActual)){
-			res.add(r);
-		}
-	}
-	return res;
-}
-*/
-
-public ArrayList<Reserva> reservasDe(String unaCiudad)
-{
-	ArrayList<Reserva> res = new ArrayList<Reserva>();
-	
-	for(Reserva r:this.getReservas())
-	{
-		if(r.getHotel().getCiudad().equals(unaCiudad))
-		{
-			res.add(r);
-		}
-	}
-	return res;
-}
-
 
 public Set<String> verCiudadesConReservas()
 {

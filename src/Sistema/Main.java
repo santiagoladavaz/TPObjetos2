@@ -1,3 +1,4 @@
+package Sistema;
 import java.util.Calendar;
 
 
@@ -5,7 +6,7 @@ public class Main {
 
 	
 	public static void main(String[] args) throws Exception {
-		
+		/*
 		Pasajero pas1=new Pasajero();
 		Pasajero pas2=new Pasajero();
 		Pasajero pas3=new Pasajero();
@@ -32,5 +33,16 @@ public class Main {
 		pas3.ofertar(pas3,20);
 		rem.estado=finalizada;
 		rem.anunciarGanador(rem);
+		*/
+		
+		
+		Calendar inicio = Calendar.getInstance();
+		
+		inicio.set(Calendar.DAY_OF_MONTH,31);
+		inicio.set(Calendar.MONTH,6);
+		inicio.set(Calendar.YEAR,2013);
+		inicio.add(Calendar.DATE, 3);
+		System.out.println(inicio.getTime());
+		
 	}
 }
