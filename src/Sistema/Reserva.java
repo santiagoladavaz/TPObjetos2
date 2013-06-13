@@ -1,7 +1,4 @@
 package Sistema;
-
-import java.util.Calendar;
-
 import Hotel.Estadia;
 import Hotel.Habitacion;
 import Hotel.Hotel;
@@ -43,7 +40,7 @@ public class Reserva {
 	
 	//Constructor
 	public Reserva(Hotel hotel, Habitacion habitacion, Pasajero pasajero,
-			Calendar checkIn, Calendar checkOut,Estadia estadia) {
+			Estadia estadia) {
 		super();
 		this.hotel = hotel;
 		this.habitacion = habitacion;

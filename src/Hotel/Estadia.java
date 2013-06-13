@@ -32,7 +32,6 @@ public class Estadia {
 	//Metodos
 	
 	public boolean cumpleCheckIn(Calendar checkIn){
-		System.out.println(this.getCheckIn().equals(checkIn));
 		return this.getCheckIn().equals(checkIn);
 	}
 	
@@ -41,19 +40,12 @@ public class Estadia {
 	}
 	
 	
-	public static void main(String[] args) {
-		Estadia estadia=new Estadia();
-		Calendar in= Calendar.getInstance();
-		Calendar out= Calendar.getInstance();
-		in.set(Calendar.DAY_OF_MONTH,29);
-		in.set(Calendar.MONTH,5);
-		in.set(Calendar.YEAR,2013);
-		out.set(Calendar.DAY_OF_MONTH,2);
-		out.set(Calendar.MONTH,6);
-		out.set(Calendar.YEAR,2013);
-		estadia.setCheckIn(in);
-		estadia.setCheckOut(out);
-		estadia.cumpleCheckIn(in);
+	//Constructor
+	public Estadia(Calendar checkIn, Calendar checkOut, int precio) {
+		super();
+		this.checkIn = checkIn;
+		this.checkOut = checkOut;
+		this.precio = precio;
 	}
 	
 	

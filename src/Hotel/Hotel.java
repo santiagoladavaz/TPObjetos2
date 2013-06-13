@@ -111,6 +111,11 @@ public class Hotel {
 			res=true;
 	return res;
   }
+	
+	
+	public void agregarReserva(Reserva res){
+		this.getReservas().add(res);
+	}
 }
 
 	

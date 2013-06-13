@@ -18,7 +18,7 @@ public class MainBusqueda {
 		
 	
 	//Habitacion 
-	Estadia estadia=new Estadia();
+	
 	Calendar in= Calendar.getInstance();
 	Calendar out= Calendar.getInstance();
 	Libre libre=new Libre();
@@ -28,8 +28,7 @@ public class MainBusqueda {
 	out.set(Calendar.DAY_OF_MONTH,2);
 	out.set(Calendar.MONTH,6);
 	out.set(Calendar.YEAR,2013);
-	estadia.setCheckIn(in);
-	estadia.setCheckOut(out);
+	Estadia estadia=new Estadia(in,out,0);
 	ArrayList<Estadia>estadias= new ArrayList<Estadia>();
 	estadias.add(estadia);
 	Habitacion h1=new Habitacion(1,4,null,libre,estadias);
@@ -71,7 +70,7 @@ public class MainBusqueda {
 	hotel2.setNombre("PEPE");
 	
 	Hotel hotel3=new Hotel();
-	hotel3.ciudad="Bosques";
+	hotel3.ciudad="Ezeiza";
 	hotel3.habitaciones=hab3;
 	hotel3.setNombre("BOSQUE");
 	
@@ -100,7 +99,7 @@ public class MainBusqueda {
 	pas.buscarHotelesPor(busqueda);
 	sis.imprimirResultadoBusqueda();
 	
-	//sis.reservarHabitacion(hotel1,h1,pas);
+	sis.reservarHabitacion(hotel1,h1,pas);
 	//sis.reservarHabitacion(hotel1,h1,pas1);
 	
 	//pas.buscarHotelesPor(busqueda);

@@ -26,6 +26,7 @@ public class Habitacion {
 		this.capacidad = capacidad;
 		this.servicios = servicios;
 		this.estado = estado;
+		this.estadias=estadias;
 	}
 	
 	//Getters & Setters
@@ -77,24 +78,23 @@ public class Habitacion {
 	}
 	
 	public boolean cumpleCheckIn(Calendar checkIn){
-		boolean res=true;
+		boolean res=false;
 		for(Estadia est:this.getEstadias()){
 			if(est.cumpleCheckIn(checkIn))
 				res=true;
 			}
-		System.out.println(res);
 		return res;
 	
 	}
 	
 	
 	public boolean cumpleCheckOut(Calendar checkOut){
-		boolean res=true;
+		boolean res=false;
 		for(Estadia est:this.getEstadias()){
-			if(est.cumpleCheckOut(checkOut))
+			if(est.cumpleCheckOut(checkOut)){
 				res=true;
+				}
 			}
-		System.out.println(res);
 	 return res;	
 	}
 
@@ -117,9 +117,9 @@ public class Habitacion {
 
 	
 	public static void main(String[] args) {
-		Estadia estadia=new Estadia();
 		Calendar in= Calendar.getInstance();
 		Calendar out= Calendar.getInstance();
+		Calendar out2= Calendar.getInstance();
 		Libre libre=new Libre();
 		in.set(Calendar.DAY_OF_MONTH,29);
 		in.set(Calendar.MONTH,5);
@@ -127,12 +127,16 @@ public class Habitacion {
 		out.set(Calendar.DAY_OF_MONTH,2);
 		out.set(Calendar.MONTH,6);
 		out.set(Calendar.YEAR,2013);
-		estadia.setCheckIn(in);
-		estadia.setCheckOut(out);
+		out2.set(Calendar.DAY_OF_MONTH,3);
+		out2.set(Calendar.MONTH,6);
+		out2.set(Calendar.YEAR,2013);
+		Estadia estadia=new Estadia(in,out,4);
+		Estadia estadia2=new Estadia(in,out2,3);
 		ArrayList<Estadia>estadias= new ArrayList<Estadia>();
 		estadias.add(estadia);
+		estadias.add(estadia2);
 		Habitacion hab=new Habitacion(1,4,null,libre,estadias);
-		hab.cumpleCheckIn(in);
+		//hab.cumpleCheckIn(in);
 		hab.cumpleCheckOut(out);
 		
 	}

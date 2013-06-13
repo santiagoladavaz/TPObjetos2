@@ -47,6 +47,11 @@ public void setMail(String mail) {
 
 //Metodos
 
+public void agregarReserva(Reserva res){
+	this.getReservas().add(res);
+}
+
+
 public Set<String> verCiudadesConReservas()
 {
 	Set<String> ciudades = new HashSet<String>();

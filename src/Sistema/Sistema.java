@@ -80,10 +80,8 @@ public class Sistema{
 			for(Habitacion h:r.getHabitaciones()){
 				System.out.println("Habitacion Numero "+h.getNumero());
 			}
-		
-	}
-	
-}
+		  }
+		}
 	
 	
 	
@@ -93,9 +91,9 @@ public class Sistema{
 			if(res.getHotel().mismoHotel(hotel)){
 				if(res.getHotel().mismaHabitacion(habitacion)){
 					habitacion.reservate();
-					Reserva reserva=new Reserva(hotel, habitacion,pas,habitacion.getEstadias());
-					pas.getReservas().add(reserva);
-					hotel.getReservas().add(reserva);
+					Reserva reserva=new Reserva(hotel, habitacion,pas,habitacion.getEstadias().get(0));
+					pas.agregarReserva(reserva);
+					hotel.agregarReserva(reserva);
 					System.out.println("Se acaba de Reservar "+habitacion.getNumero()+" En el hotel "+hotel.getNombre());
 					this.concretarReserva(hotel,pas);
 				   }
