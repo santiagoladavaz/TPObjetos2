@@ -25,7 +25,7 @@ public class FiltroReservaNDiasHotel extends Filtro{
 	public boolean cumpleCondicion(Reserva res) {
 	 Calendar fechaActual=Calendar.getInstance();
 	 fechaActual.add(Calendar.DATE,this.getnDias());
-	 return res.getCheckIn().equals(fechaActual);	
+	 return res.getEstadia().getCheckIn().equals(fechaActual);	
 		
 	}
 	

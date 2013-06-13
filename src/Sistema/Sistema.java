@@ -93,7 +93,7 @@ public class Sistema{
 			if(res.getHotel().mismoHotel(hotel)){
 				if(res.getHotel().mismaHabitacion(habitacion)){
 					habitacion.reservate();
-					Reserva reserva=new Reserva(hotel, habitacion,pas,habitacion.getCheckIn(),habitacion.getCheckOut());
+					Reserva reserva=new Reserva(hotel, habitacion,pas,habitacion.getEstadias());
 					pas.getReservas().add(reserva);
 					hotel.getReservas().add(reserva);
 					System.out.println("Se acaba de Reservar "+habitacion.getNumero()+" En el hotel "+hotel.getNombre());

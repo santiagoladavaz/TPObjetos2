@@ -2,6 +2,7 @@ package Sistema;
 
 import java.util.Calendar;
 
+import Hotel.Estadia;
 import Hotel.Habitacion;
 import Hotel.Hotel;
 
@@ -10,8 +11,7 @@ public class Reserva {
 	Hotel hotel;
 	Habitacion habitacion;
 	Pasajero pasajero;
-	Calendar checkIn;
-	Calendar checkOut;
+	Estadia estadia;
 	
 	//Getters & Setters
 	public Hotel getHotel() {
@@ -32,30 +32,23 @@ public class Reserva {
 	public void setPasajero(Pasajero pasajero) {
 		this.pasajero = pasajero;
 	}
-	public Calendar getCheckIn() {
-		return checkIn;
+
+	public Estadia getEstadia() {
+		return estadia;
 	}
-	public void setCheckIn(Calendar checkIn) {
-		this.checkIn = checkIn;
+	public void setEstadia(Estadia estadia) {
+		this.estadia = estadia;
 	}
-	public Calendar getCheckOut() {
-		return checkOut;
-	}
-	public void setCheckOut(Calendar checkOut) {
-		this.checkOut = checkOut;
-	}
-	
 	
 	
 	//Constructor
 	public Reserva(Hotel hotel, Habitacion habitacion, Pasajero pasajero,
-			Calendar checkIn, Calendar checkOut) {
+			Calendar checkIn, Calendar checkOut,Estadia estadia) {
 		super();
 		this.hotel = hotel;
 		this.habitacion = habitacion;
 		this.pasajero = pasajero;
-		this.checkIn = checkIn;
-		this.checkOut = checkOut;
+		this.estadia=estadia;
 	}
 	
 	

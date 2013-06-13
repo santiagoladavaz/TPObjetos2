@@ -1,8 +1,7 @@
-package Sistema;
+package Hotel;
 
 import java.util.ArrayList;
 
-import Hotel.Hotel;
 
 public class Hotelero {
 	ArrayList<Hotel>hoteles=new ArrayList<Hotel>();

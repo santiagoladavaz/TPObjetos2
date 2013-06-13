@@ -15,7 +15,7 @@ public class FiltroReservasFuturas extends Filtro{
 	//Se fija que la fecha de checkIn sea posterior a la actual
 	public boolean cumpleCondicion(Reserva res) {
 		Calendar fechaActual=Calendar.getInstance();
-		return res.getCheckIn().after(fechaActual);
+		return res.getEstadia().getCheckIn().after(fechaActual);
 	}
 	
 	

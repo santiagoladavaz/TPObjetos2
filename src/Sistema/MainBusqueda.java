@@ -1,4 +1,5 @@
 package Sistema;
+import Hotel.Estadia;
 import Hotel.EstadoHabitacion;
 import Hotel.Habitacion;
 import Hotel.Hotel;
@@ -17,27 +18,32 @@ public class MainBusqueda {
 		
 	
 	//Habitacion 
+	Estadia estadia=new Estadia();
 	Calendar in= Calendar.getInstance();
 	Calendar out= Calendar.getInstance();
+	Libre libre=new Libre();
 	in.set(Calendar.DAY_OF_MONTH,29);
 	in.set(Calendar.MONTH,5);
 	in.set(Calendar.YEAR,2013);
 	out.set(Calendar.DAY_OF_MONTH,2);
 	out.set(Calendar.MONTH,6);
 	out.set(Calendar.YEAR,2013);
-	EstadoHabitacion libre=new Libre();
-	Habitacion h1=new Habitacion(1,4,null,libre,in,out);
+	estadia.setCheckIn(in);
+	estadia.setCheckOut(out);
+	ArrayList<Estadia>estadias= new ArrayList<Estadia>();
+	estadias.add(estadia);
+	Habitacion h1=new Habitacion(1,4,null,libre,estadias);
 
 	
 	//Habitacion 2
 	EstadoHabitacion reservada=new Reservada();
-	Habitacion h2=new Habitacion(2,2,null,reservada,in,out);
+	Habitacion h2=new Habitacion(2,2,null,reservada,estadias);
 	
 	//Habitacion 3
-	Habitacion h3=new Habitacion(3,6,null,reservada,in,out);
+	Habitacion h3=new Habitacion(3,6,null,reservada,estadias);
 	
 	//Habitacion 4
-	Habitacion h4=new Habitacion(108,4,null,libre,in,out);
+	Habitacion h4=new Habitacion(108,4,null,libre,estadias);
 	
 	
 	ArrayList<Habitacion>hab1=new ArrayList<Habitacion>();
@@ -65,7 +71,7 @@ public class MainBusqueda {
 	hotel2.setNombre("PEPE");
 	
 	Hotel hotel3=new Hotel();
-	hotel3.ciudad="Ezeiza";
+	hotel3.ciudad="Bosques";
 	hotel3.habitaciones=hab3;
 	hotel3.setNombre("BOSQUE");
 	
@@ -94,7 +100,7 @@ public class MainBusqueda {
 	pas.buscarHotelesPor(busqueda);
 	sis.imprimirResultadoBusqueda();
 	
-	sis.reservarHabitacion(hotel1,h1,pas);
+	//sis.reservarHabitacion(hotel1,h1,pas);
 	//sis.reservarHabitacion(hotel1,h1,pas1);
 	
 	//pas.buscarHotelesPor(busqueda);

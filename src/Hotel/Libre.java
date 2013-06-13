@@ -11,7 +11,9 @@ public void reservar(Habitacion hab){
  }
 
 public boolean cumpleCondiciones(Busqueda bus,Habitacion hab){
-	return hab.cumpleCapacidad(bus.getCantHuespedes())&hab.cumpleCheckIn(bus.getFechaIngreso())&hab.cumpleCheckOut(bus.getFechaSalida());
+	return hab.cumpleCapacidad(bus.getCantHuespedes())
+	       &hab.cumpleCheckIn(bus.getFechaIngreso())
+	       &hab.cumpleCheckOut(bus.getFechaSalida());
  }
 	
 	
