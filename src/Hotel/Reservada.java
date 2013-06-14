@@ -3,15 +3,15 @@ import Excepsiones.LaHabitacionYaEstaReservada;
 import Sistema.Busqueda;
 
 
-public class Reservada extends EstadoHabitacion {
+public class Reservada extends EstadoEstadia {
 
-	@Override
-	public void reservar(Habitacion hab) throws LaHabitacionYaEstaReservada {
+	
+	public void reservar(Estadia estadia) throws LaHabitacionYaEstaReservada {
 		throw new LaHabitacionYaEstaReservada();
 	}
 
 	
-	public boolean cumpleCondiciones(Busqueda busqueda,Habitacion hab){
+	public boolean cumpleCondiciones(Busqueda busqueda,Habitacion hab,Estadia estadia){
 		return false;
 	}
 

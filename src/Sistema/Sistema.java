@@ -11,15 +11,28 @@ public class Sistema{
 	ArrayList<Hotel>hoteles=new ArrayList<Hotel>();
 	ArrayList<Resultado>resultadosBusqueda=new ArrayList<Resultado>();
 	Remate remate;
-
+	Estadia estadia;
 	
 	
 	//Getters & Setters
+	
+	
+	
 	public ArrayList<Hotel> getHoteles() {
 		return hoteles;
 	}
 
 	
+	public Estadia getEstadia() {
+		return estadia;
+	}
+
+
+	public void setEstadia(Estadia estadia) {
+		this.estadia = estadia;
+	}
+
+
 	public void setHoteles(ArrayList<Hotel> hoteles) {
 		this.hoteles = hoteles;
 	}
@@ -49,14 +62,18 @@ public class Sistema{
 	public void buscarHotelesPor(Busqueda busqueda){
 		ArrayList<Resultado>res=new ArrayList<Resultado>();
 		Resultado resultado;
+		Estadia estadia;
+		Libre libre=new Libre();
 		
 		for(Hotel hotel:this.getHoteles()){
 			if(hotel.cumpleCondicionHotel(busqueda)){
 				resultado=new Resultado(hotel,hotel.cumpleTodasCondiciones(busqueda));
 				res.add(resultado);
-			}
-		}	
+				}
+			}	
 		this.setResultadosBusqueda(res);
+		estadia=new Estadia(busqueda.getFechaIngreso(),busqueda.getFechaSalida(),0,libre);
+		this.setEstadia(estadia);
 	}
 	
 
@@ -90,7 +107,7 @@ public class Sistema{
 		for(Resultado res:this.getResultadosBusqueda()){
 			if(res.getHotel().mismoHotel(hotel)){
 				if(res.getHotel().mismaHabitacion(habitacion)){
-					habitacion.reservate();
+					habitacion.reservate(this.getEstadia());
 					Reserva reserva=new Reserva(hotel, habitacion,pas,habitacion.getEstadias().get(0));
 					pas.agregarReserva(reserva);
 					hotel.agregarReserva(reserva);

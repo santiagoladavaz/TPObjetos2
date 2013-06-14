@@ -3,17 +3,17 @@ package Hotel;
 import Sistema.Busqueda;
 
 
-public class Libre extends EstadoHabitacion {
+public class Libre extends EstadoEstadia {
 
 	@Override
-public void reservar(Habitacion hab){
-	hab.setEstado(new Reservada());
+public void reservar(Estadia estadia){
+	estadia.setEstado(new Reservada());
  }
 
-public boolean cumpleCondiciones(Busqueda bus,Habitacion hab){
+public boolean cumpleCondiciones(Busqueda bus,Habitacion hab,Estadia estadia){
 	return hab.cumpleCapacidad(bus.getCantHuespedes())
-	       &hab.cumpleCheckIn(bus.getFechaIngreso())
-	       &hab.cumpleCheckOut(bus.getFechaSalida());
+	       &estadia.cumpleCheckIn(bus.getFechaIngreso())
+	       &estadia.cumpleCheckOut(bus.getFechaSalida());
  }
 	
 	

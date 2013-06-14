@@ -18,7 +18,7 @@ public class Hotel {
 	int telefono;
 	String email;
 	
-	
+	//Getters & Setters
 	public ArrayList<Habitacion> getHabitaciones() {
 		return habitaciones;
 	}
@@ -75,12 +75,16 @@ public class Hotel {
 	}
 	
 	
+	//////////
+	//Mensajes
+	/////////
+	
+	//Dado un destino me dice si es igual al del Hotel
 	public boolean igualDestino(String unDestino){
 		return this.getCiudad().equals(unDestino);
 	}
 	
-	
-	
+	//Metodo principal que busca habitaciones que coincidan con la busqueda
 	public ArrayList<Habitacion>cumpleTodasCondiciones(Busqueda busqueda){
 		ArrayList<Habitacion>res =new ArrayList<Habitacion>();
 		if(this.igualDestino(busqueda.getUnDestino())){
@@ -93,17 +97,19 @@ public class Hotel {
 		return res;
 	}
 		
+	
+	//Metodo que sirve para saber si en el hotel hay alguna habitacion que cumpla con la busqueda
 	public boolean cumpleCondicionHotel(Busqueda busqueda){
 		return this.cumpleTodasCondiciones(busqueda).size()>0;
 		}
 	
-	
-	
+	//Dado uno Hotel me dice es el mismo
 	public boolean mismoHotel(Hotel hotel){
 		return hotel.equals(this);
 	}
 	
 	
+	//Dada una Habitacion me dice si es "mia"
 	public boolean mismaHabitacion(Habitacion h){
 		boolean res=false;
 	for(Habitacion hab:this.getHabitaciones())
@@ -112,7 +118,7 @@ public class Hotel {
 	return res;
   }
 	
-	
+	//Agrega una Reserva a su Lista de Reservas
 	public void agregarReserva(Reserva res){
 		this.getReservas().add(res);
 	}
