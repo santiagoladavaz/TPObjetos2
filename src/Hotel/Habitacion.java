@@ -85,7 +85,6 @@ public class Habitacion {
 
 	
 	
-	
 	//Dada una habitacion me dice es la misma a esta
 	public boolean mismaHabitacion(Habitacion habitacion){
 		return habitacion.equals(this);
@@ -98,6 +97,14 @@ public class Habitacion {
 
 	
 	
+	public Estadia esIgualEstadia(Calendar in,Calendar out){
+			Estadia est=null;
+		for(Estadia estadia:this.getEstadias()){
+			if(estadia.cumpleCheckIn(in)&estadia.cumpleCheckOut(out))
+						est=estadia;
+				}
+	return est;
+ }
 
 	public static void main(String[] args) {
 		Libre libre=new Libre();
@@ -120,16 +127,17 @@ public class Habitacion {
 		out1.set(Calendar.YEAR,2013);
 		
 		Estadia estadia=new Estadia(in,out,0,libre);
+		estadia.nombre="GALA";
 		
 		ArrayList<Estadia>estadias= new ArrayList<Estadia>();
 		estadias.add(estadia);
 		
-		Busqueda busqueda= new Busqueda("Bernal",in,out,4);
+		//Busqueda busqueda= new Busqueda("Bernal",in,out,4);
 		
 		Habitacion h1=new Habitacion(1,4,null,estadias);
 		
-		System.out.println(h1.getEstadias().size());
-		System.out.println(h1.cumpleCondiciones(busqueda));
+		System.out.println(h1.esIgualEstadia(in, out).nombre);
+		
 		
 		
 	}

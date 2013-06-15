@@ -1,6 +1,7 @@
 package Sistema;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import Excepsiones.LaHabitacionYaEstaReservada;
 import Hotel.*;
@@ -15,24 +16,11 @@ public class Sistema{
 	
 	
 	//Getters & Setters
-	
-	
-	
 	public ArrayList<Hotel> getHoteles() {
 		return hoteles;
 	}
 
 	
-	public Estadia getEstadia() {
-		return estadia;
-	}
-
-
-	public void setEstadia(Estadia estadia) {
-		this.estadia = estadia;
-	}
-
-
 	public void setHoteles(ArrayList<Hotel> hoteles) {
 		this.hoteles = hoteles;
 	}
@@ -62,18 +50,14 @@ public class Sistema{
 	public void buscarHotelesPor(Busqueda busqueda){
 		ArrayList<Resultado>res=new ArrayList<Resultado>();
 		Resultado resultado;
-		Estadia estadia;
-		Libre libre=new Libre();
-		
-		for(Hotel hotel:this.getHoteles()){
+		 
+		  for(Hotel hotel:this.getHoteles()){
 			if(hotel.cumpleCondicionHotel(busqueda)){
 				resultado=new Resultado(hotel,hotel.cumpleTodasCondiciones(busqueda));
 				res.add(resultado);
 				}
-			}	
+		}	
 		this.setResultadosBusqueda(res);
-		estadia=new Estadia(busqueda.getFechaIngreso(),busqueda.getFechaSalida(),0,libre);
-		this.setEstadia(estadia);
 	}
 	
 
@@ -103,15 +87,19 @@ public class Sistema{
 	
 	
 	//Reserva una habitacion 
-	public void reservarHabitacion(Hotel hotel,Habitacion habitacion,Pasajero pas) throws LaHabitacionYaEstaReservada {
+	public void reservarHabitacion(Hotel hotel,Habitacion habitacion,Pasajero pas,Calendar in,Calendar out) throws LaHabitacionYaEstaReservada {
+		
+		Estadia estadia=habitacion.esIgualEstadia(in,out);
+		
 		for(Resultado res:this.getResultadosBusqueda()){
 			if(res.getHotel().mismoHotel(hotel)){
 				if(res.getHotel().mismaHabitacion(habitacion)){
-					habitacion.reservate(this.getEstadia());
-					Reserva reserva=new Reserva(hotel, habitacion,pas,habitacion.getEstadias().get(0));
+					habitacion.reservate(estadia);
+					Reserva reserva=new Reserva(hotel, habitacion,pas,estadia);
 					pas.agregarReserva(reserva);
 					hotel.agregarReserva(reserva);
 					System.out.println("Se acaba de Reservar "+habitacion.getNumero()+" En el hotel "+hotel.getNombre());
+					System.out.println("La estadia "+estadia.nombre);
 					this.concretarReserva(hotel,pas);
 				   }
 				  }

@@ -35,6 +35,7 @@ public class MainBusqueda {
 	out.set(Calendar.MONTH,6);
 	out.set(Calendar.YEAR,2013);
 	Estadia estadia=new Estadia(in,out,0,libre);
+	estadia.nombre="CENA";
 	
 	//Creo Lista estadias 
 	ArrayList<Estadia>estadias= new ArrayList<Estadia>();
@@ -55,25 +56,46 @@ public class MainBusqueda {
 	out1.set(Calendar.DAY_OF_MONTH,2);
 	out1.set(Calendar.MONTH,6);
 	out1.set(Calendar.YEAR,2013);
-	Estadia estadia1=new Estadia(in1,out1,0,reservada);
+	Estadia estadia1=new Estadia(in1,out1,0,libre);
+	estadia1.nombre="GALA";
 
+	
+	//Estadia Diciembre
+	Calendar in2= Calendar.getInstance();
+	in2.set(Calendar.DAY_OF_MONTH,2);
+	in2.set(Calendar.MONTH,12);
+	in2.set(Calendar.YEAR,2013);
+
+	//Fecha out = 2/6/2013
+	Calendar out2= Calendar.getInstance();
+	out2.set(Calendar.DAY_OF_MONTH,30);
+	out2.set(Calendar.MONTH,12);
+	out2.set(Calendar.YEAR,2013);
+	Estadia diciembre=new Estadia(in2,out2,0,libre);
+	estadia.nombre="Diciembre";
+	
+	
+	
 	estadias.add(estadia);//estadia con in:29/5/2013, out:2/6/2013 y Libre
+	estadias.add(diciembre);
 	
 	
-	estadias1.add(estadia1);//estadia1 con in:27/5/2013 out:2/6/2013 y Reservada
-	estadias1.add(estadia);//estadia con in:29/5/2013, out:2/6/2013 y Libre
+	estadias1.add(estadia1);//estadia1 con in:27/5/2013 out:2/6/2013 y Libre
+	
+	
+	//estadias1.add(estadia);//estadia con in:29/5/2013, out:2/6/2013 y Libre
 	
 	//Habitacion 1
-	Habitacion h1=new Habitacion(1,4,null,estadias1);
+	Habitacion h1=new Habitacion(1,4,null,estadias);
 	
 	//Habitacion 2
-	Habitacion h2=new Habitacion(2,2,null,estadias);
+	Habitacion h2=new Habitacion(2,2,null,estadias1);
 	
 	//Habitacion 3
-	Habitacion h3=new Habitacion(3,6,null,estadias);
+	Habitacion h3=new Habitacion(3,6,null,estadias1);
 	
 	//Habitacion 4
-	Habitacion h4=new Habitacion(108,4,null,estadias);
+	Habitacion h4=new Habitacion(108,4,null,estadias1);
 	
 	
 	//Contiene Habitacion 1
@@ -142,26 +164,37 @@ public class MainBusqueda {
 	//Busqueda con: destino:"Bernal" in:27/5/2013 out:2/6/2013 y 4 huespedes.
 	Busqueda busqueda1=new Busqueda("Bernal",in1,out1,4);
 	
+	
+	Busqueda busquedaDic=new Busqueda("Bernal",in2,out2,4);
 ////////////////////	
 //Metodos a probar//
 ///////////////////	
 	
+	pas.buscarHotelesPor(busquedaDic);
+	sis.imprimirResultadoBusqueda();
+	
+	
+	//sis.reservarHabitacion(hotel1,h1,pas,in,out);    // Alquila el dani,con busqueda
+	//sis.reservarHabitacion(hotel4,h4,pas,in1,out1);  // Alquila el sheraton,con busqueda1
+	
 	pas.buscarHotelesPor(busqueda);
 	sis.imprimirResultadoBusqueda();
 	
-	sis.reservarHabitacion(hotel1,h1,pas);
-	//sis.reservarHabitacion(hotel1,h1,pas1);
-	
-	pas.buscarHotelesPor(busqueda);
+	pas.buscarHotelesPor(busqueda1);
 	sis.imprimirResultadoBusqueda();
 	
-	/*sis.reservarHabitacion(hotel4,h4,pas);
+	sis.reservarHabitacion(hotel1,h1,pas,in2,out2);
+	sis.reservarHabitacion(hotel1,h1,pas,in,out);
+	
+	System.out.println(h1.getEstadias().get(0).getEstado());
+	System.out.println(h1.getEstadias().get(1).getEstado());
+	
 
 	
-	pas.buscarHotelesPor(busqueda);
-	sis.imprimirResultadoBusqueda();
-	*/
+	//pas.buscarHotelesPor(busqueda);
+	//sis.imprimirResultadoBusqueda();
 	
+
 	
 	
 	

@@ -11,6 +11,7 @@ public class Estadia {
 	Calendar checkOut;
 	int precio;
 	EstadoEstadia estado;
+	public String nombre;
 	
 	//Constructor
 	public Estadia(Calendar checkIn, Calendar checkOut, int precio,EstadoEstadia estado) {

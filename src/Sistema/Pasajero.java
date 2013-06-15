@@ -9,7 +9,7 @@ import Hotel.Habitacion;
 import Hotel.Hotel;
 
 
-@SuppressWarnings("unused")
+
 public class Pasajero {
 
 //Var. De Instancia	
@@ -75,8 +75,8 @@ public void ofertar(Pasajero unPasajero,int unPrecio) throws Exception{
 }
 
 
-public void reservarHabitacion(Hotel hotel, Habitacion habitacion,Pasajero pas) throws LaHabitacionYaEstaReservada{
-	this.getSistema().reservarHabitacion(hotel,habitacion,this);
+public void reservarHabitacion(Hotel hotel, Habitacion habitacion,Pasajero pas,Calendar in,Calendar out) throws LaHabitacionYaEstaReservada{
+	this.getSistema().reservarHabitacion(hotel,habitacion,this,in,out);
 }
 
 
