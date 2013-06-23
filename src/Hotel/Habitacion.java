@@ -11,18 +11,17 @@ public class Habitacion {
 	
 	int numero;
 	int capacidad;
-	ArrayList<Servicio>servicios=new ArrayList<Servicio>();
 	ArrayList<Estadia>estadias=new ArrayList<Estadia>();
+	ArrayList<ServicioHabitacion>servicios=new ArrayList<ServicioHabitacion>();
 	
 	
 	//Constructor
-	public Habitacion(int numero, int capacidad, ArrayList<Servicio> servicios,
-			ArrayList<Estadia>estadias) {
-		super();
+	public Habitacion(int numero, int capacidad, ArrayList<Estadia> estadias,
+			ArrayList<ServicioHabitacion> servicios) {
 		this.numero = numero;
 		this.capacidad = capacidad;
+		this.estadias = estadias;
 		this.servicios = servicios;
-		this.estadias=estadias;
 	}
 	
 	
@@ -31,18 +30,21 @@ public class Habitacion {
 		return capacidad;
 	}
 	
+
 	public void setCapacidad(int capacidad) {
 		this.capacidad = capacidad;
 	}
 	
-	public ArrayList<Servicio> getServicios() {
+
+	
+	public ArrayList<ServicioHabitacion> getServicios() {
 		return servicios;
 	}
 
-	public void setServicios(ArrayList<Servicio> servicios) {
+	public void setServicios(ArrayList<ServicioHabitacion> servicios) {
 		this.servicios = servicios;
 	}
-	
+
 	public int getNumero() {
 		return numero;
 	}
@@ -135,7 +137,7 @@ public class Habitacion {
 		
 		//Busqueda busqueda= new Busqueda("Bernal",in,out,4);
 		
-		Habitacion h1=new Habitacion(1,4,null,estadias);
+		Habitacion h1=new Habitacion(0, 4, estadias,null);
 		
 		System.out.println(h1.esIgualEstadia(in, out).nombre);
 		

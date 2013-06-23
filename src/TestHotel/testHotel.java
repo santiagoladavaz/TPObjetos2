@@ -31,9 +31,10 @@ public class testHotel {
 		when(busqueda.getUnDestino()).thenReturn("Bernal");
 		when(hab.cumpleCondiciones(busqueda)).thenReturn(true);
 		reserva=mock(Reserva.class);
-		hotel=new Hotel(habitaciones, reservas, null, "ElDani","Argentina","Bernal","Cerrito",42515622,"eldani@hotmail.com");
+		hotel=new Hotel(habitaciones, reservas, null, "ElDani","Argentina","Bernal",0,"Cerrito",42515622,
+				 		"eldani@hotmail.com",null,null);
 		
-		}
+	}
 	
 	
 	@Test

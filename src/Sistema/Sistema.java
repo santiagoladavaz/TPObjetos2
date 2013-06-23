@@ -94,31 +94,8 @@ public class Sistema{
 			}
 		  }
 		}
-	
-	
-	
-	//Reserva una habitacion 
-	public void reservarHabitacion(Hotel hotel,Habitacion habitacion,Pasajero pas,Calendar in,Calendar out) throws LaHabitacionYaEstaReservada {
-		
-		Estadia estadia=habitacion.esIgualEstadia(in,out);
-		
-		for(Resultado res:this.getResultadosBusqueda()){
-			if(res.getHotel().mismoHotel(hotel)){
-				if(res.getHotel().mismaHabitacion(habitacion)){
-					habitacion.reservate(estadia);
-					Reserva reserva=new Reserva(hotel, habitacion,pas,estadia);
-					pas.agregarReserva(reserva);
-					hotel.agregarReserva(reserva);
-					System.out.println("Se acaba de Reservar "+habitacion.getNumero()+" En el hotel "+hotel.getNombre());
-					System.out.println("La estadia "+estadia.nombre);
-					this.concretarReserva(hotel,pas);
-				   }
-				  }
-		         }
-	            }
 
-	
-	
+
 	
 	public void enviarMailA(String email){
 		System.out.println("Se envio un email a la casilla  "+email);
@@ -130,7 +107,37 @@ public class Sistema{
 		this.enviarMailA(pas.getMail());
 	}
 	
+	// Método creado por Diego
+	public void enviarDatosAMail(String mail, Hotel h, Habitacion hab, Pasajero p, Estadia e)
+	{
+		System.out.println("Se envio un email a la casilla  "+mail);
+		System.out.println("Se acaba de Reservar "+hab.getNumero()+" En el hotel "+h.getNombre());
+		System.out.println("La Reserva esta hecha a nombre de:"+p.getNombre() );
+		System.out.println("La estadia es del "+e.getCheckIn()+"Hasta el" +e.getCheckOut()); 
+	}
 	
+	
+	//Reserva una habitacion 
+	// <<<<<<< Método modificado por Diego >>>>>>>
+	public void reservarHabitacion(Hotel hotel,Habitacion habitacion,Pasajero pas,Calendar in,Calendar out) throws LaHabitacionYaEstaReservada {
+		
+		Estadia estadia=habitacion.esIgualEstadia(in,out);
+		
+		for(Resultado res:this.getResultadosBusqueda()){
+			if(res.getHotel().mismoHotel(hotel)){
+				if(res.getHotel().mismaHabitacion(habitacion)){
+					habitacion.reservate(estadia);
+					Reserva reserva=new Reserva(hotel, habitacion,pas,estadia);
+					pas.agregarReserva(reserva);
+					hotel.agregarReserva(reserva);
+					this.enviarDatosAMail(pas.getMail(), hotel, habitacion, pas, estadia); // Modificado por Diego
+					this.enviarDatosAMail(hotel.getEmail(), hotel, habitacion, pas, estadia); // Modificado por Diego
+					
+				   }
+				  }
+		         }
+	            }
+
 	
 		
 }

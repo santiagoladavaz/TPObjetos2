@@ -47,6 +47,35 @@ public void setMail(String mail) {
 
 //Metodos
 
+
+
+//Método creado por Diego << Verifica después si hace lo que tendría que hacer
+public boolean puedeCalificarYComentarAHotel(Hotel unHotel) {
+	
+	boolean res = false;
+	
+	for(Reserva r:this.getReservas())
+	{
+		// Esto supuestamente se fija si la fecha del check-out es anterior a la del check-out
+		if(r.getHotel().equals(unHotel) & r.getEstadia().getCheckOut().before(Calendar.getInstance()) )
+		{
+			res = true;
+			break;
+		}
+		// Te parece tirar una excepción aca que diga que no puede calificar un hotel en el cual no haya estado
+		// o que la fecha del check-out sea posterior a la fecha actual
+	
+	}
+	return res;
+}
+
+
+
+
+
+
+
+//Agrega una reserva a su lista de reservas
 public void agregarReserva(Reserva res){
 	this.getReservas().add(res);
 }
@@ -66,16 +95,18 @@ public Set<String> verCiudadesConReservas()
 }
 
 
-
+//Le dice al sistema que busque Hoteles segun Busqueda
 public void buscarHotelesPor(Busqueda busqueda){
 	this.getSistema().buscarHotelesPor(busqueda);
 }
 
+
+//Oferta en el remate
 public void ofertar(Pasajero unPasajero,int unPrecio) throws Exception{
 	this.getSistema().ofertar(this,unPrecio);
 }
 
-
+//Reserva una habitacion,antes debe buscarlas
 public void reservarHabitacion(Hotel hotel, Habitacion habitacion,Pasajero pas,Calendar in,Calendar out) throws LaHabitacionYaEstaReservada{
 	this.getSistema().reservarHabitacion(hotel,habitacion,this,in,out);
 }

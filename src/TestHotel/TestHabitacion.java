@@ -30,7 +30,7 @@ public class TestHabitacion {
 		when(estadia.cumpleCondiciones(bus, hab)).thenReturn(true);
 		estadias.add(estadia);
 		bus=mock(Busqueda.class);
-		hab=new Habitacion(1,4,null,estadias);
+		hab=new Habitacion(1,4,estadias,null);
 		
 		in= Calendar.getInstance();
 		in.set(Calendar.DAY_OF_MONTH,29);

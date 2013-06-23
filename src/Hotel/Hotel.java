@@ -5,27 +5,29 @@ import java.util.ArrayList;
 import Sistema.Busqueda;
 import Sistema.Reserva;
 
-
+	
 
 public class Hotel {
+
 	public ArrayList<Habitacion>habitaciones=new ArrayList<Habitacion>();
 	ArrayList<Reserva>reservas=new ArrayList<Reserva>();
-	Servicio servicios;
+	ArrayList<Servicio> servicios =new ArrayList<Servicio> (); // Modificado por Diego
 	String nombre;
 	String pais;
 	public String ciudad;
+	int categoria; // Agregado por Diego
 	String direccion;
 	int telefono;
 	String email;
+	ArrayList<String> comentarios = new ArrayList<String>(); // Agregado por Diego
+	ArrayList<Integer> calificaciones = new ArrayList<Integer>(); // Agregado por Diego
 	
-	
-	
-	
-	//Constructor 
+	//Constructor
 	public Hotel(ArrayList<Habitacion> habitaciones,
-			ArrayList<Reserva> reservas, Servicio servicios, String nombre,
-			String pais, String ciudad, String direccion, int telefono,
-			String email) {
+			ArrayList<Reserva> reservas, ArrayList<Servicio> servicios,
+			String nombre, String pais, String ciudad, int categoria,
+			String direccion, int telefono, String email,
+			ArrayList<String> comentarios, ArrayList<Integer> calificaciones) {
 		super();
 		this.habitaciones = habitaciones;
 		this.reservas = reservas;
@@ -33,13 +35,22 @@ public class Hotel {
 		this.nombre = nombre;
 		this.pais = pais;
 		this.ciudad = ciudad;
+		this.categoria = categoria;
 		this.direccion = direccion;
 		this.telefono = telefono;
 		this.email = email;
+		this.comentarios = comentarios;
+		this.calificaciones = calificaciones;
 	}
 	
 	
 	//Getters & Setters
+	public int getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(int categoria) {
+		this.categoria = categoria;
+	}
 	public ArrayList<Habitacion> getHabitaciones() {
 		return habitaciones;
 	}
@@ -52,10 +63,10 @@ public class Hotel {
 	public void setReservas(ArrayList<Reserva> reservas) {
 		this.reservas = reservas;
 	}
-	public Servicio getServicios() {
+	public ArrayList<Servicio> getServicios() {
 		return servicios;
 	}
-	public void setServicios(Servicio servicios) {
+	public void setServicios(ArrayList<Servicio> servicios) {
 		this.servicios = servicios;
 	}
 	public String getNombre() {
@@ -94,11 +105,45 @@ public class Hotel {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+	public ArrayList<String> getComentarios() {
+		return comentarios;
+	}
+	public void setComentarios(ArrayList<String> comentarios) {
+		this.comentarios = comentarios;
+	}
+	public ArrayList<Integer> getCalificaciones() {
+		return calificaciones;
+	}
+	public void setCalificaciones(ArrayList<Integer> calificaciones) {
+		this.calificaciones = calificaciones;
+	}
 	
 	//////////
 	//Mensajes
 	/////////
+	
+	// Agregado por Diego
+	public float puntajePromedio() {
+		float res = 0;
+		for(int x:this.getCalificaciones()){
+			res = res + x;
+		}
+		return res/this.getCalificaciones().size();
+	}
+	
+	
+	// Agregado por Diego
+	public void agregarServicioAHotel(Hotel h, ServicioHotel sh)
+	{
+		ServiciosHotel svs = new ServiciosHotel();
+		for(ServicioHotel s:svs.getServiciosH()){
+			if(sh.equals(s)){
+				this.getServicios().add(sh);
+			}
+		   }
+		}
+	
+	
 	
 	//Dado un destino me dice si es igual al del Hotel
 	public boolean igualDestino(String unDestino){
