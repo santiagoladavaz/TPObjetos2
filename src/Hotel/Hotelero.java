@@ -2,10 +2,15 @@ package Hotel;
 
 import java.util.ArrayList;
 
+import Sistema.Sistema;
+
 
 public class Hotelero {
 	ArrayList<Hotel>hoteles=new ArrayList<Hotel>();
-
+	Sistema sistema;
+	
+	
+	
 	//Getters & Setters
 	public ArrayList<Hotel> getHoteles() {
 		return hoteles;
@@ -13,6 +18,14 @@ public class Hotelero {
 
 	public void setHoteles(ArrayList<Hotel> hoteles) {
 		this.hoteles = hoteles;
+	}
+
+	public Sistema getSistema() {
+		return sistema;
+	}
+
+	public void setSistema(Sistema sistema) {
+		this.sistema = sistema;
 	}
 	
 	

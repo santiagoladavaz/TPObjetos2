@@ -52,6 +52,7 @@ public void agregarReserva(Reserva res){
 }
 
 
+//Aca porque no me entra en el template de Filtro
 public Set<String> verCiudadesConReservas()
 {
 	Set<String> ciudades = new HashSet<String>();
@@ -78,6 +79,19 @@ public void ofertar(Pasajero unPasajero,int unPrecio) throws Exception{
 public void reservarHabitacion(Hotel hotel, Habitacion habitacion,Pasajero pas,Calendar in,Calendar out) throws LaHabitacionYaEstaReservada{
 	this.getSistema().reservarHabitacion(hotel,habitacion,this,in,out);
 }
+
+
+//Constructor
+public Pasajero(String nombre, ArrayList<Reserva> reservas, Sistema sistema,
+		String mail) {
+	super();
+	this.nombre = nombre;
+	this.reservas = reservas;
+	this.sistema = sistema;
+	this.mail = mail;
+}
+
+
 
 
 }

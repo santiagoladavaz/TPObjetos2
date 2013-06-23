@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import Excepsiones.LaHabitacionYaEstaReservada;
 
-
+/*
 public class MainBusqueda {
 	
 	@SuppressWarnings("unused")
@@ -152,11 +152,10 @@ public class MainBusqueda {
 	sis.hoteles=hoteles;
 	
 	//Pasajero1 con su Sistema
-	Pasajero pas=new Pasajero();
-	pas.setSistema(sis);
+	Pasajero pas=new Pasajero(null, null, sis, null);
 	pas.setMail("pasajero@gmail.com");
-	Pasajero pas1=new Pasajero();
-	pas.setSistema(sis);
+	Pasajero pas1=new Pasajero(null, null, sis, null);
+	
 	
 	//Busqueda con: destino:"Bernal" in:29/5/2013 out:2/6/2013 y 4 huespedes.
 	Busqueda busqueda= new Busqueda("Bernal",in,out,4);
@@ -172,6 +171,7 @@ public class MainBusqueda {
 	
 	pas.buscarHotelesPor(busquedaDic);
 	sis.imprimirResultadoBusqueda();
+	sis.reservarHabitacion(hotel1,h1,pas,in2,out2);
 	
 	
 	//sis.reservarHabitacion(hotel1,h1,pas,in,out);    // Alquila el dani,con busqueda
@@ -179,12 +179,14 @@ public class MainBusqueda {
 	
 	pas.buscarHotelesPor(busqueda);
 	sis.imprimirResultadoBusqueda();
+	sis.reservarHabitacion(hotel1,h1,pas,in,out);
 	
 	pas.buscarHotelesPor(busqueda1);
 	sis.imprimirResultadoBusqueda();
+	sis.reservarHabitacion(hotel4,h4,pas,in1,out1);
 	
-	sis.reservarHabitacion(hotel1,h1,pas,in2,out2);
-	sis.reservarHabitacion(hotel1,h1,pas,in,out);
+	
+	//sis.reservarHabitacion(hotel1,h1,pas,in,out);
 	
 	System.out.println(h1.getEstadias().get(0).getEstado());
 	System.out.println(h1.getEstadias().get(1).getEstado());
@@ -208,3 +210,4 @@ public class MainBusqueda {
 	
 		
 }
+*/

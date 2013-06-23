@@ -117,6 +117,8 @@ public class Remate {
 		}
 	}
 	
+	
+	//Toma si estado y le pregunta por el ganador,solo lo dara si el Remate finalizo
 	public Pasajero anunciarGanador(Remate rem) throws Exception{
 		return this.getEstado().anunciarGanador(this);
 	}

@@ -18,6 +18,27 @@ public class Hotel {
 	int telefono;
 	String email;
 	
+	
+	
+	
+	//Constructor 
+	public Hotel(ArrayList<Habitacion> habitaciones,
+			ArrayList<Reserva> reservas, Servicio servicios, String nombre,
+			String pais, String ciudad, String direccion, int telefono,
+			String email) {
+		super();
+		this.habitaciones = habitaciones;
+		this.reservas = reservas;
+		this.servicios = servicios;
+		this.nombre = nombre;
+		this.pais = pais;
+		this.ciudad = ciudad;
+		this.direccion = direccion;
+		this.telefono = telefono;
+		this.email = email;
+	}
+	
+	
 	//Getters & Setters
 	public ArrayList<Habitacion> getHabitaciones() {
 		return habitaciones;

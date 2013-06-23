@@ -28,6 +28,13 @@ public class FiltroReservaNDiasHotel extends Filtro{
 	 return res.getEstadia().getCheckIn().equals(fechaActual);	
 		
 	}
+
+	
+	//Constructor
+	public FiltroReservaNDiasHotel(int nDias) {
+		super();
+		this.nDias = nDias;
+	}
 	
 	
 	

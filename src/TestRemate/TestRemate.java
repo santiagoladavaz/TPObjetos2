@@ -1,14 +1,13 @@
-package Test;
+package TestRemate;
 
 import java.util.Calendar;
 
 import org.junit.*;
 import org.mockito.Mock;
 
+import Excepsiones.ElRemateEstaEnCurso;
 import Hotel.Habitacion;
-import Remate.EnCurso;
-import Remate.Estado;
-import Remate.Remate;
+import Remate.*;
 import Sistema.Pasajero;
 
 import static org.mockito.Mockito.*;
@@ -20,12 +19,13 @@ public class TestRemate {
 
 	Habitacion h;
 	Pasajero p;
+	Pasajero p1;
 	Calendar inicio= Calendar.getInstance();
 	Calendar fin= Calendar.getInstance();
 	Estado estado;
-	Pasajero pas;
 	Remate remate;
 	EnCurso enCurso;
+	Finalizada finalizada;
 	
 @Before
 public void SetUp() throws Exception{
@@ -33,6 +33,7 @@ public void SetUp() throws Exception{
 	h=mock(Habitacion.class);
 	//Mock de pasajero
 	p=mock(Pasajero.class);
+	p1=mock(Pasajero.class);
 	//Mock de fecha de inicio de remate
 	inicio.set(Calendar.DAY_OF_MONTH,29);
 	inicio.set(Calendar.MONTH,5);
@@ -47,6 +48,9 @@ public void SetUp() throws Exception{
 	int precio=10;
 	//Creacion de Objeto Remate
 	remate=new Remate(h,precio,inicio,fin,enCurso,p);
+	//Mock de finalizada
+	finalizada=mock(Finalizada.class);
+	when(enCurso.anunciarGanador(remate)).thenReturn(p);
 }
 
 @Test
@@ -60,6 +64,14 @@ public void testAnunciarGanador() throws Exception{
 	verify(enCurso).anunciarGanador(remate);
 }
 	
-}	
+@Test
+public void testEstaElGanadorEnCurso() throws Exception{
+	try{
+		remate.ofertar(p,20,remate);
+		remate.anunciarGanador(remate);
+		}catch(ElRemateEstaEnCurso e){
+			}
+     }
 
 
+}

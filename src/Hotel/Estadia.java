@@ -42,7 +42,6 @@ public class Estadia {
 	public void setPrecio(int precio) {
 		this.precio = precio;
 	}
-	
 	public EstadoEstadia getEstado() {
 		return estado;
 	}
@@ -50,7 +49,11 @@ public class Estadia {
 		this.estado = estado;
 	}
 	
+	
+	/////////
 	//Metodos
+	/////////
+	
 	
 	//Dado un CheckIn se fija se coincide con el de la Estadia
 	public boolean cumpleCheckIn(Calendar checkIn){

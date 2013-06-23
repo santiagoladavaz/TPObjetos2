@@ -21,7 +21,7 @@ public class FiltroCiudadEnParticular extends Filtro{
 	
 	//Se fija que la ciudad dada sea igual a la ciudad del Hotel reservado.
 	public boolean cumpleCondicion(Reserva res) {
-		return res.getHotel().getCiudad().equals(ciudad);
+		return res.getHotel().getCiudad().equals(this.getCiudad());
 	}
 	
 	//Constructor.

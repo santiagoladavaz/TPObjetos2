@@ -14,7 +14,18 @@ public class Sistema{
 	Remate remate;
 	Estadia estadia;
 	
-	
+	//Constructor
+	public Sistema(ArrayList<Hotel> hoteles,
+			ArrayList<Resultado> resultadosBusqueda, Remate remate,
+			Estadia estadia) {
+		super();
+		this.hoteles = hoteles;
+		this.resultadosBusqueda = resultadosBusqueda;
+		this.remate = remate;
+		this.estadia = estadia;
+	}
+
+
 	//Getters & Setters
 	public ArrayList<Hotel> getHoteles() {
 		return hoteles;

@@ -15,9 +15,6 @@ public class Habitacion {
 	ArrayList<Estadia>estadias=new ArrayList<Estadia>();
 	
 	
-	
-	
-	
 	//Constructor
 	public Habitacion(int numero, int capacidad, ArrayList<Servicio> servicios,
 			ArrayList<Estadia>estadias) {
@@ -27,6 +24,7 @@ public class Habitacion {
 		this.servicios = servicios;
 		this.estadias=estadias;
 	}
+	
 	
 	//Getters & Setters
 	public int getCapacidad() {
@@ -66,6 +64,9 @@ public class Habitacion {
 	
 	///////////
 	//Metodos
+	//////////
+	
+	
 	
 	//Dada una capacidad me dice si cumple con la de la Habitacion
 	public boolean cumpleCapacidad(int capacidad){
