@@ -64,49 +64,50 @@ public void setPreferencias(PreferenciasPasajero preferencias) {
 
 
 
-//Método creado por Diego
+//Método creado por Diego//Testeado
 public void calificarHotel(Hotel h, int calificacion) throws NoPuedeCalificar{
 	this.getSistema().calificarHotel(h,calificacion, this);
 }
 
-//Método creado por Diego
+//Método creado por Diego//Testeado
 public void comentarHotel(Hotel h, String comentario) throws NoPuedeComentar{
 	this.getSistema().comentarHotel(h,comentario, this);
 }
 
 
-//Método creado por Diego
+//Método creado por Diego//Testeado
 public void agregarComentario(Hotel h, String comentario){
 
 		h.getComentarios().add(comentario);
 }
 
 
-//Agregado por Diego
+//Agregado por Diego//Testeado
 public boolean igualPaisYCiudad(Oferta o) {
 	return o.getCiudad() == this.getPreferencias().getCiudad() & o.getPais() == this.getPreferencias().getPais();
 }
 
 
 
-//Agregado por Diego
+//Agregado por Diego//Testeado - no corre
 public boolean hayEstadiaEntreFechas(Oferta o, Calendar fechaInicial, Calendar fechaFinal) {
 
 	boolean res = false;
 	
 	for(Estadia e: o.getHabitacion().getEstadias()){
-		if(e.getCheckIn().equals(fechaInicial) & e.getCheckOut().equals(fechaFinal))
-		      {res = true;}
+		if(e.getCheckIn().after(fechaInicial) & e.getCheckOut().before(fechaFinal))
+		      {res = true;
+		       break;}
 	   }
 return res;
 }
 
 
-//Agregado por Diego	
+//Agregado por Diego	//Testeado - no corre
 public Estadia dameEstadiaEntreFechas(Oferta o, Calendar fechaInicial, Calendar fechaFinal) throws NoSeEncuentraEstadia {
 	Estadia res = null;
 	for(Estadia e: o.getHabitacion().getEstadias()){
-		if(e.getCheckIn().equals(fechaInicial) & e.getCheckOut().equals(fechaFinal)) {
+		if(this.hayEstadiaEntreFechas(o, fechaInicial, fechaFinal)) {
 			res = e;
 		}
 		else {
@@ -158,15 +159,7 @@ public void update(Observable o, Object arg) {
 
 
 
-
-
-
-
-
-
-
-
-//Agrega una reserva a su lista de reservas
+//Agrega una reserva a su lista de reservas -Testeado
 public void agregarReserva(Reserva res){
 	this.getReservas().add(res);
 }
@@ -186,20 +179,32 @@ public Set<String> verCiudadesConReservas()
 }
 
 
-//Le dice al sistema que busque Hoteles segun Busqueda
+//Le dice al sistema que busque Hoteles segun Busqueda - Testeado
 public void buscarHotelesPor(Busqueda busqueda){
 	this.getSistema().buscarHotelesPor(busqueda);
 }
 
 
-//Oferta en el remate
+//Oferta en el remate - Testeado
 public void ofertar(Pasajero unPasajero,int unPrecio) throws Exception{
 	this.getSistema().ofertar(this,unPrecio);
 }
 
-//Reserva una habitacion,antes debe buscarlas
+//Reserva una habitacion,antes debe buscarlas - Testeado
 public void reservarHabitacion(Hotel hotel, Habitacion habitacion,Pasajero pas,Calendar in,Calendar out) throws LaHabitacionYaEstaReservada{
 	this.getSistema().reservarHabitacion(hotel,habitacion,this,in,out);
+}
+
+public void verReservasFuturas(){
+	this.getSistema().verReservasFuturas(this.getReservas());
+}
+
+public void verTodasLasReservas(){
+	this.getReservas();}
+
+
+public void verReservasDeUnaCiudad(String ciudad){
+	this.getSistema().verReservasDeUnaCiudad(this.getReservas(),ciudad);
 }
 
 

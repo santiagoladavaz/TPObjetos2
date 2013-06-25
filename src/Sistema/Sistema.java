@@ -7,6 +7,7 @@ import java.util.Observable;
 import Excepsiones.LaHabitacionYaEstaReservada;
 import Excepsiones.NoPuedeCalificar;
 import Excepsiones.NoPuedeComentar;
+import Filtro.Filtro;
 import Hotel.*;
 import Remate.Remate;
 
@@ -17,6 +18,7 @@ public class Sistema extends Observable{
 	ArrayList<Oferta> ofertas = new ArrayList<Oferta> ();
 	Remate remate;
 	Estadia estadia;
+	Filtro filtro;
 	
 	//Constructor
 	public Sistema(ArrayList<Hotel> hoteles,
@@ -32,15 +34,21 @@ public class Sistema extends Observable{
 
 	//Getters & Setters
 	
-	
-	
-	
-	
 	public ArrayList<Hotel> getHoteles() {
 		return hoteles;
 	}
 
 	
+	public Filtro getFiltro() {
+		return filtro;
+	}
+
+
+	public void setFiltro(Filtro filtro) {
+		this.filtro = filtro;
+	}
+
+
 	public ArrayList<Oferta> getOfertas() {
 		return ofertas;
 	}
@@ -90,16 +98,10 @@ public class Sistema extends Observable{
 	
 	//Método creado por Diego 
 	public boolean puedeCalificarYComentarAHotel(Hotel unHotel, Pasajero p) {
-		
 		boolean res = false;
-		
-		for(Reserva r:p.getReservas())
-		{
-			
-			if(r.getHotel().equals(unHotel) & r.getEstadia().getCheckOut().before(Calendar.getInstance()) ) {
-				res = true;
-			}
-			
+		for(Reserva r:p.getReservas()){
+			if(r.getHotel().equals(unHotel) & r.getEstadia().getCheckOut().after(Calendar.getInstance()) ) {
+				res = true; }
 		}
 		return res;
 	}
@@ -107,7 +109,7 @@ public class Sistema extends Observable{
 	
 	public void calificarHotel(Hotel h, int calificacion, Pasajero p) throws NoPuedeCalificar {
 		if(this.puedeCalificarYComentarAHotel(h, p)) {
-			h.getCalificaciones().add(calificacion);
+			h.agregarCalificacion(calificacion);
 		}
 		else{
 			throw new NoPuedeCalificar();
@@ -117,13 +119,17 @@ public class Sistema extends Observable{
 	
 	public void comentarHotel(Hotel h, String comentario, Pasajero p) throws NoPuedeComentar {
 		if(this.puedeCalificarYComentarAHotel(h, p)) {
-			h.getComentarios().add(comentario);
+			h.agregarComentario(comentario);
 		}
 		else{
 			throw new NoPuedeComentar();
 		}
 	}
 	
+	
+	public void agregarResultado(Resultado res){
+		this.getResultadosBusqueda().add(res);
+	}
 	
 	public void buscarHotelesPor(Busqueda busqueda){
 		ArrayList<Resultado>res=new ArrayList<Resultado>();
@@ -142,8 +148,8 @@ public class Sistema extends Observable{
 	// Agregado por Diego
 	public void agregarOferta(Oferta o) {
 		this.getOfertas().add(o);
-		setChanged();
-		notifyObservers(o);
+		this.setChanged();
+		this.notifyObservers(o);
 	}
 	
 	
@@ -213,6 +219,17 @@ public class Sistema extends Observable{
 		         }
 	            }
 
-	
+
+	public void verReservasFuturas(ArrayList<Reserva> reservas) {
+		this.getFiltro().aplicar(reservas);
+	}
+
+
+	public void verReservasDeUnaCiudad(ArrayList<Reserva> reservas,
+			String ciudad) {
+		
+		
+	}
+
 		
 }

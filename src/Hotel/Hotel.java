@@ -143,7 +143,15 @@ public class Hotel {
 		   }
 		}
 	
+	public void agregarCalificacion(int cal){
+		cal=(Integer)cal;
+		this.getCalificaciones().add(cal);
+	}
 	
+	
+	public void agregarComentario(String comentario){
+		this.getComentarios().add(comentario);
+	}
 	
 	//Dado un destino me dice si es igual al del Hotel
 	public boolean igualDestino(String unDestino){
