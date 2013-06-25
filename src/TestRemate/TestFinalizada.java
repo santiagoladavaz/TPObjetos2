@@ -8,6 +8,7 @@ import org.mockito.Mock;
 
 import Excepsiones.ElRemateEstaEnCurso;
 import Excepsiones.ElRemateFinalizo;
+import Remate.EnCurso;
 import Remate.Finalizada;
 import Remate.Remate;
 import Sistema.Pasajero;
@@ -20,13 +21,16 @@ import static org.junit.Assert.*;
 public class TestFinalizada {
 	
 	Remate remate;
+	EnCurso encurso;
 	Finalizada finalizada;
 	Pasajero p;
 
 	@Before
-	public void SetUp(){
+	public void SetUp() throws ElRemateEstaEnCurso{
 		remate=mock(Remate.class);
 		p=mock(Pasajero.class);
+		encurso=mock(EnCurso.class);
+		when(encurso.anunciarGanador(remate)).thenReturn(p);
 		finalizada=new Finalizada();
 	}
 	

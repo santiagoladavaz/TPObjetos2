@@ -3,20 +3,30 @@ package Sistema;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
+import java.util.Observable;
 import java.util.Set;
 import Excepsiones.LaHabitacionYaEstaReservada;
+import Excepsiones.NoPuedeCalificar;
+import Excepsiones.NoPuedeComentar;
+import Excepsiones.NoSeEncuentraEstadia;
+import Hotel.Estadia;
 import Hotel.Habitacion;
 import Hotel.Hotel;
+import Hotel.Oferta;
+
+import java.util.Observer;
 
 
 
-public class Pasajero {
+public class Pasajero implements Observer{
 
 //Var. De Instancia	
 private String nombre;
 private ArrayList<Reserva> reservas = new ArrayList<Reserva>();
 private Sistema sistema;
 private String mail;
+private PreferenciasPasajero preferencias;
+
 
 //Getteres Y Setters
 public String getNombre() {
@@ -43,31 +53,112 @@ public String getMail() {
 public void setMail(String mail) {
 	this.mail = mail;
 }
-
+public PreferenciasPasajero getPreferencias() {
+	return preferencias;
+}
+public void setPreferencias(PreferenciasPasajero preferencias) {
+	this.preferencias = preferencias;
+}
 
 //Metodos
 
 
 
-//Método creado por Diego << Verifica después si hace lo que tendría que hacer
-public boolean puedeCalificarYComentarAHotel(Hotel unHotel) {
-	
+//Método creado por Diego
+public void calificarHotel(Hotel h, int calificacion) throws NoPuedeCalificar{
+	this.getSistema().calificarHotel(h,calificacion, this);
+}
+
+//Método creado por Diego
+public void comentarHotel(Hotel h, String comentario) throws NoPuedeComentar{
+	this.getSistema().comentarHotel(h,comentario, this);
+}
+
+
+//Método creado por Diego
+public void agregarComentario(Hotel h, String comentario){
+
+		h.getComentarios().add(comentario);
+}
+
+
+//Agregado por Diego
+public boolean igualPaisYCiudad(Oferta o) {
+	return o.getCiudad() == this.getPreferencias().getCiudad() & o.getPais() == this.getPreferencias().getPais();
+}
+
+
+
+//Agregado por Diego
+public boolean hayEstadiaEntreFechas(Oferta o, Calendar fechaInicial, Calendar fechaFinal) {
+
 	boolean res = false;
 	
-	for(Reserva r:this.getReservas())
-	{
-		// Esto supuestamente se fija si la fecha del check-out es anterior a la del check-out
-		if(r.getHotel().equals(unHotel) & r.getEstadia().getCheckOut().before(Calendar.getInstance()) )
-		{
-			res = true;
-			break;
+	for(Estadia e: o.getHabitacion().getEstadias()){
+		if(e.getCheckIn().equals(fechaInicial) & e.getCheckOut().equals(fechaFinal))
+		      {res = true;}
+	   }
+return res;
+}
+
+
+//Agregado por Diego	
+public Estadia dameEstadiaEntreFechas(Oferta o, Calendar fechaInicial, Calendar fechaFinal) throws NoSeEncuentraEstadia {
+	Estadia res = null;
+	for(Estadia e: o.getHabitacion().getEstadias()){
+		if(e.getCheckIn().equals(fechaInicial) & e.getCheckOut().equals(fechaFinal)) {
+			res = e;
 		}
-		// Te parece tirar una excepción aca que diga que no puede calificar un hotel en el cual no haya estado
-		// o que la fecha del check-out sea posterior a la fecha actual
-	
-	}
+		else {
+			throw new NoSeEncuentraEstadia();}
+	         }
 	return res;
 }
+
+
+
+public void mandarMail()
+{
+	System.out.println("Llego una nueva oferta");
+}
+
+
+//Agregado por Diego
+@Override
+public void update(Observable o, Object arg) {
+	
+	Oferta oferta = (Oferta)arg;
+	
+	if(hayEstadiaEntreFechas(oferta, this.getPreferencias().getFechaInicio(), this.getPreferencias().getFechaFin())) {
+		try {
+			Estadia e = this.dameEstadiaEntreFechas(oferta, this.getPreferencias().getFechaInicio(), this.getPreferencias().getFechaFin());
+			// Pregunta si el precio de la estadia es menor o igual al precio que está dispuesto
+			// pagar el Pasajero
+			if(e.getPrecio() <= this.getPreferencias().getPrecioMenor()) {
+				this.mandarMail();
+			}
+			else {
+				// Pregunta si el precio de la estadia es mayor al mínimo que pretende pagar
+				if(e.getPrecio() >= this.getPreferencias().getPrecioMayor()) {
+					this.mandarMail();
+				}
+				else {
+					if(e.getPrecio()<=this.getPreferencias().getPrecioMaximo() & e.getPrecio()>=this.getPreferencias().getPrecioMinimo()) {
+						mandarMail();
+					}
+				}
+			}
+		}catch (NoSeEncuentraEstadia e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			}
+}
+
+
+
+
+
 
 
 

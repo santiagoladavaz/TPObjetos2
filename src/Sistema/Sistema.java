@@ -2,15 +2,19 @@ package Sistema;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Observable;
 
 import Excepsiones.LaHabitacionYaEstaReservada;
+import Excepsiones.NoPuedeCalificar;
+import Excepsiones.NoPuedeComentar;
 import Hotel.*;
 import Remate.Remate;
 
 
-public class Sistema{
+public class Sistema extends Observable{
 	ArrayList<Hotel>hoteles=new ArrayList<Hotel>();
 	ArrayList<Resultado>resultadosBusqueda=new ArrayList<Resultado>();
+	ArrayList<Oferta> ofertas = new ArrayList<Oferta> ();
 	Remate remate;
 	Estadia estadia;
 	
@@ -27,11 +31,36 @@ public class Sistema{
 
 
 	//Getters & Setters
+	
+	
+	
+	
+	
 	public ArrayList<Hotel> getHoteles() {
 		return hoteles;
 	}
 
 	
+	public ArrayList<Oferta> getOfertas() {
+		return ofertas;
+	}
+
+
+	public void setOfertas(ArrayList<Oferta> ofertas) {
+		this.ofertas = ofertas;
+	}
+
+
+	public Estadia getEstadia() {
+		return estadia;
+	}
+
+
+	public void setEstadia(Estadia estadia) {
+		this.estadia = estadia;
+	}
+
+
 	public void setHoteles(ArrayList<Hotel> hoteles) {
 		this.hoteles = hoteles;
 	}
@@ -58,6 +87,44 @@ public class Sistema{
 
 	
 	//Metodos 
+	
+	//Método creado por Diego 
+	public boolean puedeCalificarYComentarAHotel(Hotel unHotel, Pasajero p) {
+		
+		boolean res = false;
+		
+		for(Reserva r:p.getReservas())
+		{
+			
+			if(r.getHotel().equals(unHotel) & r.getEstadia().getCheckOut().before(Calendar.getInstance()) ) {
+				res = true;
+			}
+			
+		}
+		return res;
+	}
+
+	
+	public void calificarHotel(Hotel h, int calificacion, Pasajero p) throws NoPuedeCalificar {
+		if(this.puedeCalificarYComentarAHotel(h, p)) {
+			h.getCalificaciones().add(calificacion);
+		}
+		else{
+			throw new NoPuedeCalificar();
+		}
+	}
+	
+	
+	public void comentarHotel(Hotel h, String comentario, Pasajero p) throws NoPuedeComentar {
+		if(this.puedeCalificarYComentarAHotel(h, p)) {
+			h.getComentarios().add(comentario);
+		}
+		else{
+			throw new NoPuedeComentar();
+		}
+	}
+	
+	
 	public void buscarHotelesPor(Busqueda busqueda){
 		ArrayList<Resultado>res=new ArrayList<Resultado>();
 		Resultado resultado;
@@ -72,6 +139,14 @@ public class Sistema{
 	}
 	
 
+	// Agregado por Diego
+	public void agregarOferta(Oferta o) {
+		this.getOfertas().add(o);
+		setChanged();
+		notifyObservers(o);
+	}
+	
+	
 	
 	
 	//Le dice a su variable Remate que oferte

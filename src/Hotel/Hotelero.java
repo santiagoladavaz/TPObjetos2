@@ -10,7 +10,13 @@ public class Hotelero {
 	Sistema sistema;
 	
 	
-	
+	//Constructor
+	public Hotelero(ArrayList<Hotel> hoteles, Sistema sistema) {
+		super();
+		this.hoteles = hoteles;
+		this.sistema = sistema;
+	}
+
 	//Getters & Setters
 	public ArrayList<Hotel> getHoteles() {
 		return hoteles;
@@ -28,7 +34,14 @@ public class Hotelero {
 		this.sistema = sistema;
 	}
 	
+	//Mensaje
 	
+	 // Agregado por Diego
+	public void agregarOferta(Oferta o)
+	{
+		this.getSistema().agregarOferta(o);
+	}
+
 	
 	
 }
