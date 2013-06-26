@@ -12,7 +12,7 @@ public abstract class Filtro {
 	
 	
 	//Filtra la lista de reservas segun las condiciones que se impongan
-	public ArrayList<Reserva> aplicar(ArrayList<Reserva> reservas) {
+	public ArrayList<Reserva> filtrar(ArrayList<Reserva> reservas) {
 		ArrayList<Reserva> listaRet = new ArrayList<Reserva>();
 		
 		for(Reserva res : reservas) {

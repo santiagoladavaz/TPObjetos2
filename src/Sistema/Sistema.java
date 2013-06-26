@@ -221,7 +221,7 @@ public class Sistema extends Observable{
 
 
 	public void verReservasFuturas(ArrayList<Reserva> reservas) {
-		this.getFiltro().aplicar(reservas);
+		this.getFiltro().filtrar(reservas);
 	}
 
 

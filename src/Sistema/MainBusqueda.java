@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import Excepsiones.LaHabitacionYaEstaReservada;
 
-/*
+
 public class MainBusqueda {
 	
 	@SuppressWarnings("unused")
@@ -86,16 +86,17 @@ public class MainBusqueda {
 	//estadias1.add(estadia);//estadia con in:29/5/2013, out:2/6/2013 y Libre
 	
 	//Habitacion 1
-	Habitacion h1=new Habitacion(1,4,null,estadias);
+	Habitacion h1=new Habitacion(1,4,estadias,null);
+	
 	
 	//Habitacion 2
-	Habitacion h2=new Habitacion(2,2,null,estadias1);
+	Habitacion h2=new Habitacion(2,2,estadias1,null);
 	
 	//Habitacion 3
-	Habitacion h3=new Habitacion(3,6,null,estadias1);
+	Habitacion h3=new Habitacion(3,6,estadias1,null);
 	
 	//Habitacion 4
-	Habitacion h4=new Habitacion(108,4,null,estadias1);
+	Habitacion h4=new Habitacion(108,4,estadias1,null);
 	
 	
 	//Contiene Habitacion 1
@@ -114,31 +115,35 @@ public class MainBusqueda {
 	ArrayList<Habitacion>hab4=new ArrayList<Habitacion>();
 	hab4.add(h4);
 	
-	
+	ArrayList<Reserva>reservas=new ArrayList<Reserva>();
 	//Hotel 1
-	Hotel hotel1=new Hotel();
+	Hotel hotel1=new Hotel(null, null, null, null, null, null, 0, null, 0, null, null, null);
 	hotel1.ciudad="Bernal";
 	hotel1.habitaciones=hab1;
 	hotel1.setNombre("EL DANI");
 	hotel1.setEmail("eldani@gmail.com");
+	hotel1.setReservas(reservas);
 	
 	//Hotel 2
-	Hotel hotel2=new Hotel();
+	Hotel hotel2=new Hotel(null, null, null, null, null, null, 0, null, 0, null, null, null);
 	hotel2.ciudad="Quilmes";
 	hotel2.habitaciones=hab2;
 	hotel2.setNombre("PEPE");
+	hotel2.setReservas(reservas);
 	
 	//Hotel 3
-	Hotel hotel3=new Hotel();
+	Hotel hotel3=new Hotel(null, null, null, null, null, null, 0, null, 0, null, null, null);
 	hotel3.ciudad="Ezeiza";
 	hotel3.habitaciones=hab3;
 	hotel3.setNombre("BOSQUE");
+	hotel3.setReservas(reservas);
 	
 	//Hotel 4
-	Hotel hotel4=new Hotel();
+	Hotel hotel4=new Hotel(null, null, null, null, null, null, 0, null, 0, null, null, null);
 	hotel4.ciudad="Bernal";
 	hotel4.habitaciones=hab4;
 	hotel4.setNombre("Sheraton");
+	hotel4.setReservas(reservas);
 	
 	//Lista de Hoteles para el Sistema
 	ArrayList<Hotel>hoteles=new ArrayList<Hotel>();
@@ -148,12 +153,13 @@ public class MainBusqueda {
 	hoteles.add(hotel4);
 	
 	//Sistema con su Lista de hoteles
-	Sistema sis=new Sistema();
+	Sistema sis=new Sistema(null, null, null, diciembre);
 	sis.hoteles=hoteles;
 	
 	//Pasajero1 con su Sistema
 	Pasajero pas=new Pasajero(null, null, sis, null);
 	pas.setMail("pasajero@gmail.com");
+	pas.setReservas(reservas);
 	Pasajero pas1=new Pasajero(null, null, sis, null);
 	
 	
@@ -171,10 +177,10 @@ public class MainBusqueda {
 	
 	pas.buscarHotelesPor(busquedaDic);
 	sis.imprimirResultadoBusqueda();
-	sis.reservarHabitacion(hotel1,h1,pas,in2,out2);
+	//sis.reservarHabitacion(hotel1,h1,pas,in2,out2);
 	
 	
-	//sis.reservarHabitacion(hotel1,h1,pas,in,out);    // Alquila el dani,con busqueda
+	sis.reservarHabitacion(hotel1,h1,pas,in,out);    // Alquila el dani,con busqueda
 	//sis.reservarHabitacion(hotel4,h4,pas,in1,out1);  // Alquila el sheraton,con busqueda1
 	
 	pas.buscarHotelesPor(busqueda);
@@ -197,7 +203,7 @@ public class MainBusqueda {
 	//sis.imprimirResultadoBusqueda();
 	
 
-	
+
 	
 	
 	
@@ -210,4 +216,3 @@ public class MainBusqueda {
 	
 		
 }
-*/
