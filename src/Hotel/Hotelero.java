@@ -42,6 +42,9 @@ public class Hotelero {
 		this.getSistema().agregarOferta(o);
 	}
 
-	
+	//Agrega un hotel al sistema
+	public void agregarHotel(Hotel hotel){
+		this.getSistema().agregarHotel(hotel);
+	}
 	
 }

@@ -54,16 +54,16 @@ public class TestPasajero {
 		out.set(Calendar.MONTH,6);
 		out.set(Calendar.YEAR,2013);
 		
-		//Fecha inUno = 3/6/2013
+		//Fecha inUno = 12/12/2013
 		inUno= Calendar.getInstance();
-		inUno.set(Calendar.DAY_OF_MONTH,3);
-		inUno.set(Calendar.MONTH,6);
+		inUno.set(Calendar.DAY_OF_MONTH,12);
+		inUno.set(Calendar.MONTH,12);
 		inUno.set(Calendar.YEAR,2013);
 
-		//Fecha outUno = 17/6/2013
+		//Fecha outUno = 24/12/2013
 		outUno= Calendar.getInstance();
-		outUno.set(Calendar.DAY_OF_MONTH,17);
-		outUno.set(Calendar.MONTH,6);
+		outUno.set(Calendar.DAY_OF_MONTH,24);
+		outUno.set(Calendar.MONTH,12);
 		outUno.set(Calendar.YEAR,2013);
 		
 		
@@ -73,14 +73,15 @@ public class TestPasajero {
 		ArrayList<Reserva>reservas=new ArrayList<Reserva>();
 		sis=mock(Sistema.class);
 		reserva=mock(Reserva.class);
+		when(reserva.getEstadia()).thenReturn(estadia);
 		busqueda=mock(Busqueda.class);
 		hotel=mock(Hotel.class);
 		pref=new PreferenciasPasajero(10,20,400, 100, in, out, "Bernal", "Argentina");
 		pas=new Pasajero("Santi", reservas, sis, "Santi@hotmail.com");
 		pas.setPreferencias(pref);
 		estadia=mock(Estadia.class);
-		when(estadia.getCheckIn()).thenReturn(in);
-		when(estadia.getCheckOut()).thenReturn(out);
+		when(estadia.getCheckIn()).thenReturn(inUno);
+		when(estadia.getCheckOut()).thenReturn(outUno);
 		hab=mock(Habitacion.class);
 		ArrayList<Estadia>estadias=new ArrayList<Estadia>();
 		when(hab.getEstadias()).thenReturn(estadias);
@@ -148,7 +149,6 @@ public void testHayEstadiaEntreFechas(){
 public void testDameEstadiaEntreFechas() throws NoSeEncuentraEstadia{
 	assertEquals(pas.dameEstadiaEntreFechas(oferta, in, out),estadia);
 }
-
 
 
 

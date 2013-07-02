@@ -18,7 +18,7 @@ import Remate.Remate;
 import Sistema.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
-public class testSistema {
+public class TestSistema {
 
 	Sistema sis;
 	Pasajero pas;
@@ -132,10 +132,8 @@ public class testSistema {
 	
    @Test
    public void testBuscarHoteles(){
-	   System.out.println(sis.getResultadosBusqueda().size());
-	   sis.buscarHotelesPor(busqueda);
-	   System.out.println(sis.getResultadosBusqueda().size());
-	   assertTrue(sis.getResultadosBusqueda().size()==1);
+	  sis.buscarHotelesPor(busqueda);
+	  assertTrue(sis.getResultadosBusqueda().size()==1);
    }
 	
    
@@ -162,10 +160,14 @@ public class testSistema {
    @Test
 	public void testReservarHotel() throws LaHabitacionYaEstaReservada{
 		sis.reservarHabitacion(hotel, habitacion, pas, in, out);
-		verify(pas).agregarReserva(res);
+		verify(pas).agregarReserva(null);
 		verify(hotel).agregarReserva(res);
 	}
 	
-   
+   @Test
+   public void testAgregarHotel(){
+	   sis.agregarHotel(hotel);
+	   assertTrue(sis.getHoteles().size()==2);
+   }
    
 }

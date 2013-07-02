@@ -13,6 +13,8 @@ public class PreferenciasPasajero {
 	private Calendar fechaFin;
 	private String ciudad;
 	private String pais;
+
+	
 	
 	public int getPrecioMaximo() {
 		return precioMaximo;

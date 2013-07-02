@@ -231,5 +231,11 @@ public class Sistema extends Observable{
 		
 	}
 
+
+	public void agregarHotel(Hotel hotel) {
+		this.getHoteles().add(hotel);
+		
+	}
+
 		
 }
