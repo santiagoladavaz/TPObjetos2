@@ -16,7 +16,7 @@ public class Finalizada extends Estado{
 
 	@Override
 	public Pasajero anunciarGanador(Remate rem) throws Exception {
-		System.out.println(rem.getPosibleGanador().getNombre());
+		//System.out.println(rem.getPosibleGanador().getNombre());
 		return rem.getPosibleGanador();
 		
 	}

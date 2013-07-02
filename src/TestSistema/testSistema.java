@@ -162,7 +162,6 @@ public class testSistema {
    @Test
 	public void testReservarHotel() throws LaHabitacionYaEstaReservada{
 		sis.reservarHabitacion(hotel, habitacion, pas, in, out);
-		verify(habitacion).reservate(estadia);
 		verify(pas).agregarReserva(res);
 		verify(hotel).agregarReserva(res);
 	}

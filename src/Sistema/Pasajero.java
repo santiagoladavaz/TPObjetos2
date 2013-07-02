@@ -3,7 +3,6 @@ package Sistema;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
-import java.util.Observable;
 import java.util.Set;
 import Excepsiones.LaHabitacionYaEstaReservada;
 import Excepsiones.NoPuedeCalificar;
@@ -14,11 +13,11 @@ import Hotel.Habitacion;
 import Hotel.Hotel;
 import Hotel.Oferta;
 
-import java.util.Observer;
 
 
 
-public class Pasajero implements Observer{
+
+public class Pasajero{
 
 //Var. De Instancia	
 private String nombre;
@@ -118,46 +117,6 @@ public Estadia dameEstadiaEntreFechas(Oferta o, Calendar fechaInicial, Calendar 
 
 
 
-public void mandarMail()
-{
-	System.out.println("Llego una nueva oferta");
-}
-
-
-//Agregado por Diego
-@Override
-public void update(Observable o, Object arg) {
-	
-	Oferta oferta = (Oferta)arg;
-	
-	if(hayEstadiaEntreFechas(oferta, this.getPreferencias().getFechaInicio(), this.getPreferencias().getFechaFin())) {
-		try {
-			Estadia e = this.dameEstadiaEntreFechas(oferta, this.getPreferencias().getFechaInicio(), this.getPreferencias().getFechaFin());
-			// Pregunta si el precio de la estadia es menor o igual al precio que está dispuesto
-			// pagar el Pasajero
-			if(e.getPrecio() <= this.getPreferencias().getPrecioMenor()) {
-				this.mandarMail();
-			}
-			else {
-				// Pregunta si el precio de la estadia es mayor al mínimo que pretende pagar
-				if(e.getPrecio() >= this.getPreferencias().getPrecioMayor()) {
-					this.mandarMail();
-				}
-				else {
-					if(e.getPrecio()<=this.getPreferencias().getPrecioMaximo() & e.getPrecio()>=this.getPreferencias().getPrecioMinimo()) {
-						mandarMail();
-					}
-				}
-			}
-		}catch (NoSeEncuentraEstadia e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-			}
-}
-
-
-
 
 //Agrega una reserva a su lista de reservas -Testeado
 public void agregarReserva(Reserva res){
@@ -195,16 +154,51 @@ public void reservarHabitacion(Hotel hotel, Habitacion habitacion,Pasajero pas,C
 	this.getSistema().reservarHabitacion(hotel,habitacion,this,in,out);
 }
 
-public void verReservasFuturas(){
-	this.getSistema().verReservasFuturas(this.getReservas());
+//Ver las reservas futuras
+public ArrayList<Reserva>reservasFuturas(){
+	ArrayList<Reserva>res=new ArrayList<Reserva>();
+	
+	for(Reserva r:this.getReservas()){
+		if(r.esReservaFutura())
+			res.add(r);
+	}
+return res;
 }
 
-public void verTodasLasReservas(){
-	this.getReservas();}
+
+//ver reservas actuales
+public ArrayList<Reserva>reservasActuales(){
+	ArrayList<Reserva>res=new ArrayList<Reserva>();
+	
+	for(Reserva r:this.getReservas()){
+		if(r.esReservaActual())
+			res.add(r);
+	}
+return res;
+}
 
 
-public void verReservasDeUnaCiudad(String ciudad){
-	this.getSistema().verReservasDeUnaCiudad(this.getReservas(),ciudad);
+//ver reseravas con NDias
+public ArrayList<Reserva>reservasConNDias(int dias){
+	ArrayList<Reserva>res=new ArrayList<Reserva>();
+	
+	for(Reserva r:this.getReservas()){
+		if(r.esReservaConInicioNDias(dias))
+			res.add(r);
+	}
+return res;
+}
+
+
+//Ver las reservas de una ciudad
+public ArrayList<Reserva> reservasDeUnaCiudad(String ciudad){
+	ArrayList<Reserva>res=new ArrayList<Reserva>();
+
+	for(Reserva r:this.getReservas()){
+		if(r.esReservaDeUnaCiudad(ciudad))
+			res.add(r);}
+
+	return res;
 }
 
 

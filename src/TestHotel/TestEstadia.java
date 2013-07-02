@@ -34,7 +34,9 @@ public class TestEstadia {
 		out.set(Calendar.MONTH,6);
 		out.set(Calendar.YEAR,2013);
 		
-		est=new Estadia(in,out, 0, libre);
+		//Se crea la estadia
+		est=new Estadia(in,out,200,libre);
+
 		
 		in1= Calendar.getInstance();
 		in1.set(Calendar.DAY_OF_MONTH,30);
@@ -70,4 +72,18 @@ public class TestEstadia {
 		est.reservar();
 		verify(libre).reservar(est);
 		}
+	
+	
+	@Test
+	public void testEsMenor(){
+		assertTrue(est.esMenor(300));
+	}
+	
+	@Test
+	public void testEsMayor(){
+		assertTrue(est.esMayor(100));
+   }
+
+
+
 }

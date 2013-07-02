@@ -196,7 +196,46 @@ public class Hotel {
 	public void agregarReserva(Reserva res){
 		this.getReservas().add(res);
 	}
+	
+	//Ver las reservas futuras
+	public ArrayList<Reserva>reservasFuturas(){
+		ArrayList<Reserva>res=new ArrayList<Reserva>();
+		
+		for(Reserva r:this.getReservas()){
+			if(r.esReservaFutura())
+				res.add(r);
+		}
+	return res;
+  }
+	
+
+  //ver reservas actuales
+	public ArrayList<Reserva>reservasActuales(){
+		ArrayList<Reserva>res=new ArrayList<Reserva>();
+		
+		for(Reserva r:this.getReservas()){
+			if(r.esReservaActual())
+				res.add(r);
+		}
+	return res;
+  }
+	
+	
+  //ver reseravas con NDias
+	public ArrayList<Reserva>reservasConNDias(int dias){
+		ArrayList<Reserva>res=new ArrayList<Reserva>();
+		
+		for(Reserva r:this.getReservas()){
+			if(r.esReservaConInicioNDias(dias))
+				res.add(r);
+		}
+	return res;
+  }
+
 }
+	
+	
+
 
 	
 	

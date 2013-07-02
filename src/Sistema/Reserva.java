@@ -1,4 +1,6 @@
 package Sistema;
+import java.util.Calendar;
+
 import Hotel.Estadia;
 import Hotel.Habitacion;
 import Hotel.Hotel;
@@ -49,7 +51,27 @@ public class Reserva {
 	}
 	
 	
+	public boolean esReservaActual(){
+		Calendar fechaActual=Calendar.getInstance();
+		Calendar inicio=this.getEstadia().getCheckIn();
+		Calendar fin=this.getEstadia().getCheckOut();
+		return  fechaActual.after(inicio) & fechaActual.before(fin);
+	}
+	
+	public boolean esReservaFutura(){
+		Calendar fechaActual=Calendar.getInstance();
+		return this.getEstadia().getCheckIn().after(fechaActual);
+	}
 	
 	
+	public boolean esReservaConInicioNDias(int dias){
+		Calendar fechaActual=Calendar.getInstance();
+		fechaActual.add(Calendar.DATE,dias);
+		return this.getEstadia().getCheckIn().equals(fechaActual);	
+	}
 
+	public boolean esReservaDeUnaCiudad(String ciudad){
+		return this.getHotel().getCiudad().equals(ciudad);
+	}
+	
 }

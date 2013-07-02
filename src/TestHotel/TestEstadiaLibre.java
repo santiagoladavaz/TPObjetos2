@@ -6,7 +6,7 @@ import Sistema.Busqueda;
 import static org.mockito.Mockito.*;
 
 
-public class testEstadiaLibre {
+public class TestEstadiaLibre {
 	Libre libre;
 	Estadia estadia;
 	Reservada reservada;

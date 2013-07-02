@@ -17,7 +17,7 @@ import static org.mockito.Mockito.*;
 
 
 
-public class testHotel {
+public class TestHotel {
 	Hotel hotel;
 	Habitacion hab;
 	ArrayList<Habitacion>habitaciones=new ArrayList<Habitacion>();	

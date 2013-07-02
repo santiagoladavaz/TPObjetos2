@@ -71,9 +71,25 @@ public class Estadia {
 		
 	}
 	
+	
+	//Le dice a su estado que reserve
 	public void reservar() throws LaHabitacionYaEstaReservada{
 		this.getEstado().reservar(this);
 	}
+	
+	
+	//dado un precio me dice si es menor al de la estadia
+	public boolean esMenor(int precio){
+		 return this.getPrecio()<=precio;
+	}
+	
+	
+	//dado un precio me dice si es mayor al de la estadia
+	public boolean esMayor(int precio){
+	  return this.getPrecio()>=precio;
+	}
+	
+	
 	
 	
 	public static void main(String[] args) {
@@ -97,13 +113,13 @@ public class Estadia {
 		out1.set(Calendar.MONTH,6);
 		out1.set(Calendar.YEAR,2013);
 		
-		Estadia estadia=new Estadia(in,out,0,libre);
+		Estadia estadia=new Estadia(in,out,200,libre);
 		
-		Busqueda busqueda= new Busqueda(null,in,out,4);
+		//Busqueda busqueda= new Busqueda(null,in,out,4);
 		
-		Habitacion h1=new Habitacion(1,4,null,null);
+		//Habitacion h1=new Habitacion(1,4,null,null);
 		
-		System.out.println(estadia.cumpleCondiciones(busqueda,h1));
+		System.out.println(estadia.esMayor(300));
 		
 		
 		
