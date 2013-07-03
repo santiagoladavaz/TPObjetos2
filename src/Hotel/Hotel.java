@@ -1,6 +1,7 @@
 package Hotel;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import Sistema.Busqueda;
 import Sistema.Reserva;
@@ -232,11 +233,50 @@ public class Hotel {
 	return res;
   }
 
+
+	
+
+
+public Hotel procesarHabitacionesHotel(Hotel ht) {
+	Hotel res = ht;
+	ArrayList<Habitacion> hs = new ArrayList<Habitacion>(); 
+	
+	for(Habitacion h:res.getHabitaciones()) {
+		hs.add(h.filtrarHabitacionesSinDescuentos());
+		}
+	res.setHabitaciones(hs);
+	return res;
 }
-	
-	
 
 
+	public Hotel filtrarHabitaciones(Hotel hotel) {
+		Hotel res = hotel;
+		ArrayList<Habitacion> hs = new ArrayList<Habitacion>();
+		for(Habitacion h:res.getHabitaciones()) {
+			if(h.getEstadias().size()>0) {
+					hs.add(h);
+			}
+	   }
+	res.setHabitaciones(hs);
+	return res;
+   }
+
+	
+	public void hotelConEstadiasEntre(Calendar f1, Calendar f2) {
+		for(Habitacion h:this.getHabitaciones()) {
+			h.filtrarHabitacionesSinDescuentos().habitacionesConEstadiaEntre(f1,f2);
+			}
+	}
+
+
+	public void hotelConEstadiasAnteriorA(Calendar f1) {
+		for(Habitacion h:this.getHabitaciones()) {
+			h.filtrarHabitacionesSinDescuentos().habitacionesConEstadiaAnteriorA(f1);
+			}
+		}
+
+
+}
 	
 	
 

@@ -47,4 +47,9 @@ public class Hotelero {
 		this.getSistema().agregarHotel(hotel);
 	}
 	
+	// El hotelero agrega un hotel con habitaciones con descuento al sistema
+	public void agregarDescuento(Hotel d) {
+		this.getSistema().agregarDescuento(d);
+	}
+	
 }

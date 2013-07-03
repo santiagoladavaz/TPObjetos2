@@ -16,6 +16,7 @@ public class Sistema extends Observable{
 	ArrayList<Hotel>hoteles=new ArrayList<Hotel>();
 	ArrayList<Resultado>resultadosBusqueda=new ArrayList<Resultado>();
 	ArrayList<Oferta> ofertas = new ArrayList<Oferta> ();
+	ArrayList<Hotel> descuentos = new ArrayList<Hotel>(); // Agregue esta variable de instancia
 	Remate remate;
 	Estadia estadia;
 	Filtro filtro;
@@ -33,6 +34,15 @@ public class Sistema extends Observable{
 
 
 	//Getters & Setters
+	
+	public ArrayList<Hotel> getDescuentos() {
+		return descuentos;
+	}
+
+	public void setDescuentos(ArrayList<Hotel> descuentos) {
+		this.descuentos = descuentos;
+	}
+	
 	
 	public ArrayList<Hotel> getHoteles() {
 		return hoteles;
@@ -237,5 +247,7 @@ public class Sistema extends Observable{
 		
 	}
 
-		
+	public void agregarDescuento(Hotel d){
+		this.getDescuentos().add(d);
+	}
 }

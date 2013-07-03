@@ -202,6 +202,53 @@ public ArrayList<Reserva> reservasDeUnaCiudad(String ciudad){
 }
 
 
+
+//Devuelve una lista de hoteles filtrados por ciudad
+public ArrayList<Hotel> buscarHotelPorCiudad(String ciudad) {
+	
+	ArrayList<Hotel> res = new ArrayList<Hotel>();
+	
+	for(Hotel h:this.getSistema().getDescuentos()) {
+		if(h.getCiudad().equals(ciudad)) {
+			res.add(h.filtrarHabitaciones(h));
+		}
+	}
+	
+	return res;
+}
+
+
+// Busca e imprime en pantalla las habitaciones con los precios (con y sin descuento) que estan vigentes y 
+// estan entre las fechas pasadas por parámetro
+public void buscarHabitacionEntreFechas(Calendar f1, Calendar f2) {
+	
+	for(Hotel h:getSistema().getDescuentos())
+	{
+		h.hotelConEstadiasEntre(f1, f2);
+	
+	}
+}
+
+// Busca e imprime en pantalla las habitaciones con los precios (con y sin descuento) que estan vigentes y 
+// son anteriores a la fecha pasada por parámetro
+public void buscarHabitacionAnterioresA(Calendar f1) {
+	
+	for(Hotel h:getSistema().getDescuentos())
+	{
+		h.hotelConEstadiasAnteriorA(f1);
+	
+	}
+}
+
+
+
+
+
+
+
+
+
+
 //Constructor
 public Pasajero(String nombre, ArrayList<Reserva> reservas, Sistema sistema,
 		String mail) {

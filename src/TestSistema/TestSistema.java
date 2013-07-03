@@ -27,6 +27,7 @@ public class TestSistema {
 	ArrayList<Hotel>hoteles=new ArrayList<Hotel>();
 	ArrayList<Resultado>resultadosBusqueda=new ArrayList<Resultado>();
 	ArrayList<Habitacion>resHabitaciones=new ArrayList<Habitacion>();
+	ArrayList<Hotel>descuentos=new ArrayList<Hotel>();
 	Habitacion habitacion;
 	Remate remate;
 	Estadia estadia;
@@ -94,6 +95,7 @@ public class TestSistema {
 		
 		//Instancia de sistema
 		sis=new Sistema(hoteles,resultadosBusqueda,remate,estadia);
+		sis.setDescuentos(descuentos);
 		}
 	
 
@@ -168,6 +170,13 @@ public class TestSistema {
    public void testAgregarHotel(){
 	   sis.agregarHotel(hotel);
 	   assertTrue(sis.getHoteles().size()==2);
+   }
+   
+   
+   @Test
+   public void agregarDescuentos(){
+	   sis.agregarDescuento(hotel);
+	   assertTrue(sis.getDescuentos().size()==1);
    }
    
 }

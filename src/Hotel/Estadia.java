@@ -2,6 +2,7 @@ package Hotel;
 
 import java.util.Calendar;
 
+import Descuento.Descuento;
 import Excepsiones.LaHabitacionYaEstaReservada;
 import Sistema.Busqueda;
 
@@ -12,6 +13,7 @@ public class Estadia {
 	int precio;
 	EstadoEstadia estado;
 	public String nombre;
+	private Descuento descuento;
 	
 	//Constructor
 	public Estadia(Calendar checkIn, Calendar checkOut, int precio,EstadoEstadia estado) {
@@ -24,6 +26,16 @@ public class Estadia {
 	
 	
 	//Getters and Setters
+	
+	public Descuento getDescuento() {
+		return descuento;
+	}
+
+	public void setDescuento(Descuento descuento) {
+		this.descuento = descuento;
+	}
+
+	
 	public Calendar getCheckIn() {
 		return checkIn;
 	}
@@ -90,6 +102,42 @@ public class Estadia {
 	}
 	
 	
+	//Test desde aca
+	
+	// Chequea que la estadia tenga un descuento y que la fecha límite de reserva sea posterior a la fecha actual
+	public boolean estaVigenteDescuento() {
+	
+	boolean res = false;
+	
+	if(!this.getDescuento().equals(null)) {
+		if(this.getDescuento().getFechaLimiteDeReserva().after(Calendar.getInstance())) {
+			res=true;
+		}
+	}
+	
+	return res;
+}
+	
+	// Imprime en pantalla la habitación, el precio y el precio con descuento siempre y cuando la estadía este dentro de las 
+	// fechas pasadas por parámetro	
+	public void estadiaEntre(Habitacion h, Calendar f1, Calendar f2) {
+		if(this.getCheckIn().after(f1) & this.getCheckOut().before(f2)) {
+			System.out.println("Habitación:"+h + "Precio:" +this.getPrecio() + 
+					           "Precio con descuento" +this.precioConDescuento());
+				
+			}
+	}
+	
+	
+	// Imprime en pantalla la habitación, el precio y el precio con descuento siempre y cuando la estadía sea anterior a la
+	// fecha pasada por parámetro
+		public void estadiaAnteriorA(Habitacion h, Calendar f1) {
+			if(this.getCheckOut().before(f1)) {
+				System.out.println("Habitación:"+h + "Precio:" +this.getPrecio() + 
+						            "Precio con descuento" +this.precioConDescuento());
+				}
+			}
+
 	
 	
 	public static void main(String[] args) {

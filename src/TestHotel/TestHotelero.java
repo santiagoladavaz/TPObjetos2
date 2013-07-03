@@ -40,5 +40,11 @@ public class TestHotelero {
 		verify(sis).agregarHotel(hotel);
 		}
 
+	
+	@Test
+	public void testAgregarDescuento(){
+		hotelero.agregarDescuento(hotel);
+		verify(sis).agregarDescuento(hotel);
+	}
 
 }
