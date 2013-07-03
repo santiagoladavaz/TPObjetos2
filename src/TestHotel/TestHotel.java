@@ -3,6 +3,7 @@ package TestHotel;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -26,9 +27,24 @@ public class TestHotel {
 	Reserva reserva;
 	ServicioHotel sh;
 	Servicio ser;
+	Calendar in;
+	Calendar out;
 	
 	@Before
 	public void setUp(){
+		in= Calendar.getInstance();
+		in.set(Calendar.DAY_OF_MONTH,29);
+		in.set(Calendar.MONTH,5);
+		in.set(Calendar.YEAR,2013);
+		
+		out= Calendar.getInstance();
+		out.set(Calendar.DAY_OF_MONTH,2);
+		out.set(Calendar.MONTH,6);
+		out.set(Calendar.YEAR,2013);
+		
+		
+		
+		
 		hab=mock(Habitacion.class);
 		habitaciones.add(hab);
 		busqueda=mock(Busqueda.class);
@@ -115,6 +131,13 @@ public class TestHotel {
 	}
 	
 
+	@Test
+	public void testHotelConEstadiasEntre(){
+		hotel.hotelConEstadiasEntre(in,out);
+		verify(hab).filtrarHabitacionesSinDescuentos().habitacionesConEstadiaAnteriorA(in);
+	}
+	
+	
 }
 
 

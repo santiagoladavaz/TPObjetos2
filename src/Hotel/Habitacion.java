@@ -116,51 +116,46 @@ public class Habitacion {
 	// Devuelve una lista con las estadias vigentes (Estadia que tengan un 
 	// descuento y que la fecha límite de reserva sea posterior a la fecha actual)
 	public ArrayList<Estadia> estadiasConDescuentosVigentes() {
-		
 		ArrayList<Estadia> res = new ArrayList<Estadia>();
-		
-		for(Estadia e:this.getEstadias()) {
-			if(e.estaVigenteDescuento()) {
-				res.add(e);
-			}
-		}
+			for(Estadia e:this.getEstadias()) {
+				if(e.estaVigenteDescuento()) {
+					res.add(e);
+			    }
+		   }
 	return res;
-	}
+  }
 		
-		// Devuelve un booleano indicando si la lista de estadias es vacia
+		
+	
+	// Devuelve un booleano indicando si la lista de estadias es vacia
 		public boolean hayEstadias() {
 		return this.getEstadias().size()==0;
 	}
 	
 		// Filtra las estadias que no estan vigentes
 		public Habitacion filtrarHabitacionesSinDescuentos() {
-		
-		this.setEstadias(this.estadiasConDescuentosVigentes());
-		
-		return this; 
+			this.setEstadias(this.estadiasConDescuentosVigentes());
+		    return this; 
 		
 	}
 
 		// Imprime en pantalla las habitaciones que tienen estadias vigentes, entre las fechas que se 
 		// pasan por parámetro
 		public void habitacionesConEstadiaEntre(Calendar f1, Calendar f2) {
-		
-		for(Estadia e:this.getEstadias()) {
-			
-			e.estadiaEntre(this,f1,f2);
+				for(Estadia e:this.getEstadias()) {
+					e.estadiaEntre(this,f1,f2);
+				}
 		}
-	}
+		
 	
 	// Imprime en pantalla las habitaciones que tienen estadias vigentes, anterior a la fecha que se 
 	// pasan por parámetro
 	public void habitacionesConEstadiaAnteriorA(Calendar f1) {
 		
 	for(Estadia e:this.getEstadias()) {
-			
 			e.estadiaAnteriorA(this, f1);
+		  }
 		}
-		
-	}
 	
 	
 	

@@ -239,39 +239,39 @@ public class Hotel {
 
 public Hotel procesarHabitacionesHotel(Hotel ht) {
 	Hotel res = ht;
-	ArrayList<Habitacion> hs = new ArrayList<Habitacion>(); 
+	ArrayList<Habitacion> listaHoteles = new ArrayList<Habitacion>(); 
 	
 	for(Habitacion h:res.getHabitaciones()) {
-		hs.add(h.filtrarHabitacionesSinDescuentos());
+		listaHoteles.add(h.filtrarHabitacionesSinDescuentos());
 		}
-	res.setHabitaciones(hs);
+	res.setHabitaciones(listaHoteles);
 	return res;
 }
 
 
 	public Hotel filtrarHabitaciones(Hotel hotel) {
 		Hotel res = hotel;
-		ArrayList<Habitacion> hs = new ArrayList<Habitacion>();
+		ArrayList<Habitacion> listaHoteles = new ArrayList<Habitacion>();
 		for(Habitacion h:res.getHabitaciones()) {
 			if(h.getEstadias().size()>0) {
-					hs.add(h);
+				listaHoteles.add(h);
 			}
 	   }
-	res.setHabitaciones(hs);
+	res.setHabitaciones(listaHoteles);
 	return res;
    }
 
 	
 	public void hotelConEstadiasEntre(Calendar f1, Calendar f2) {
-		for(Habitacion h:this.getHabitaciones()) {
-			h.filtrarHabitacionesSinDescuentos().habitacionesConEstadiaEntre(f1,f2);
+		for(Habitacion habitacion:this.getHabitaciones()) {
+			habitacion.filtrarHabitacionesSinDescuentos().habitacionesConEstadiaEntre(f1,f2);
 			}
 	}
 
 
 	public void hotelConEstadiasAnteriorA(Calendar f1) {
-		for(Habitacion h:this.getHabitaciones()) {
-			h.filtrarHabitacionesSinDescuentos().habitacionesConEstadiaAnteriorA(f1);
+		for(Habitacion habitacion:this.getHabitaciones()) {
+			habitacion.filtrarHabitacionesSinDescuentos().habitacionesConEstadiaAnteriorA(f1);
 			}
 		}
 

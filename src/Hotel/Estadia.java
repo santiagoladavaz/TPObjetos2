@@ -146,7 +146,12 @@ public class Estadia {
 		
 		
 	
-	public static void main(String[] args) {
+	
+		
+		
+		
+		
+		public static void main(String[] args) {
 		
 		Libre libre=new Libre();
 		//Fecha in = 29/5/2013

@@ -46,6 +46,7 @@ public class TestHabitacion {
 		when(estadia.getCheckOut()).thenReturn(out);
 		when(estadia.cumpleCheckIn(in)).thenReturn(true);
 		when(estadia.cumpleCheckOut(out)).thenReturn(true);
+		when(estadia.estaVigenteDescuento()).thenReturn(true);
 	}
 	
 
@@ -84,4 +85,35 @@ public class TestHabitacion {
 		verify(estadia).cumpleCheckIn(in);
 		verify(estadia).cumpleCheckOut(out);
 	}
+	
+	
+	@Test
+	public void testEstadiasConDescuentosVigentes(){
+		assertTrue(hab.estadiasConDescuentosVigentes().size()==1);
+	}
+	
+	
+	@Test
+	public void testHayEstadias(){
+		assertFalse(hab.hayEstadias());
+	}
+
+	@Test
+	public void testFiltrarHabitacionesSinDescuentos(){
+		hab.filtrarHabitacionesSinDescuentos();
+		assertTrue(hab.getEstadias().size()==1);
+	}
+	
+	@Test
+	public void testHabitacionesConEstadiaEntre(){
+		hab.habitacionesConEstadiaEntre(in,out);
+		verify(estadia).estadiaEntre(hab,in,out);
+	}
+
+	@Test
+	public void testHabitacionesConEstadiaAnteriorA(){
+		hab.habitacionesConEstadiaAnteriorA(in);
+		verify(estadia).estadiaAnteriorA(hab,in);
+	}
+
 }
