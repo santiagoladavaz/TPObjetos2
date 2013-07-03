@@ -134,10 +134,22 @@ public class TestHotel {
 	@Test
 	public void testHotelConEstadiasEntre(){
 		hotel.hotelConEstadiasEntre(in,out);
-		verify(hab).filtrarHabitacionesSinDescuentos().habitacionesConEstadiaAnteriorA(in);
+		verify(hab).filtrarHabitacionesSinDescuentos();
 	}
 	
 	
+	@Test
+	public void testProcesarHabitacionesHotel(){
+		hotel.procesarHabitacionesHotel(hotel);
+		assertTrue(hotel.getHabitaciones().size()==1);
+	}
+	
+	
+	@Test
+	public void testFiltrarHabitaciones(){
+		hotel.filtrarHabitaciones(hotel);
+		assertTrue(hotel.getHabitaciones().size()==0);
+	}
 }
 
 
