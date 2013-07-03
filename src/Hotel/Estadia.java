@@ -139,6 +139,12 @@ public class Estadia {
 			}
 
 	
+		
+		public float precioConDescuento() {
+			return this.getDescuento().aplicarDescuento(this);
+		}
+		
+		
 	
 	public static void main(String[] args) {
 		

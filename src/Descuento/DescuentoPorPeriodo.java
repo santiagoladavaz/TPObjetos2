@@ -7,9 +7,12 @@ import Hotel.Estadia;
 //Este descuento sera aplicado a todas las estadías que esten entre las dos fechas puestas como variables de instancia
 public class DescuentoPorPeriodo extends Descuento {
 	
+	
+	
 	private Calendar fechaInicial;
 	private Calendar fechaFinal;
 	
+	//Getters & Setters
 	public Calendar getFechaInicial() {
 		return fechaInicial;
 	}
@@ -23,6 +26,7 @@ public class DescuentoPorPeriodo extends Descuento {
 		this.fechaFinal = fechaFinal;
 	}
 
+	//Constructor
 	public DescuentoPorPeriodo(int porcentaje, Calendar fechaLimiteDeReserva, Calendar fechaI, Calendar fechaF) {
 		
 		super(porcentaje, fechaLimiteDeReserva);
@@ -32,11 +36,10 @@ public class DescuentoPorPeriodo extends Descuento {
 	
 	
 	// Aplica el descuento correspondiente  
-	@Override
 	public float aplicarDescuento(Estadia e) {
-		
 		return e.getPrecio()-e.getPrecio()*this.getPorcentaje() /100;
+    }
 
-		
-	}
+
+
 }
